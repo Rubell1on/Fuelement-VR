@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Intensity: -0.39999998
+    - _Intensity: -1.1999999
     m_Colors:
     - _Color: {r: 0.6117647, g: 0.6117647, b: 0.6117647, a: 1}
 --- !u!1002 &2100001

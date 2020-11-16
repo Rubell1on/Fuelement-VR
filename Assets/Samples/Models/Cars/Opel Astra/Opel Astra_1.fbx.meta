@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: 534de48a0c1579b4184ee00bb5009bd2
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body material
+    second: {fileID: 2100000, guid: 99dd83d4b93c15d42b45d2e839da78cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottom material
+    second: {fileID: 2100000, guid: 8b1cf260d3b62094e893979fbb2fb7bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Exhaust pipe
+    second: {fileID: 2100000, guid: 956bf01926139cd49bd0d32626422c73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fog light lamp material
+    second: {fileID: 2100000, guid: 00cc308c3eb89204785b3ab82cb0b6ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front bumper
+    second: {fileID: 2100000, guid: 229c7609c5777424d9a01daf6aad771e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front door material
+    second: {fileID: 2100000, guid: 1a36c62af2430134aa6aaa4bda13f9cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front fender
+    second: {fileID: 2100000, guid: f39afdd8c19b39846b2abc87972ddae7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare body material
+    second: {fileID: 2100000, guid: e0dcc35b45e86224892f8ae6b7be68f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare far light material
+    second: {fileID: 2100000, guid: 6a7651d4de504474d85e2a7d5b0b5d0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare glass material
+    second: {fileID: 2100000, guid: 8e2e3f1862cc62f488fee417137b2b9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare near light material
+    second: {fileID: 2100000, guid: 3053cfa61af0f634daaaba3e2e4daf05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare side light material
+    second: {fileID: 2100000, guid: 7db2a857422b735468ada712cdf3f557, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front fog light back material
+    second: {fileID: 2100000, guid: f5bdcc0cdc87c964ca19434f9521f135, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front fog light furniture material
+    second: {fileID: 2100000, guid: 6d671ac1ae11b2546bda063200015d8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front glass material
+    second: {fileID: 2100000, guid: 25a1ae67a7e40bf48812a8b94a6445cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front handle material
+    second: {fileID: 2100000, guid: 49bbaaa306dbd464b9d060e64c710273, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grille back
+    second: {fileID: 2100000, guid: 1b55345f2751df14cb4f50cef4326e87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grille bottom body material
+    second: {fileID: 2100000, guid: aff1e5822c042734da15c6b63db783e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grille bottom bumper part
+    second: {fileID: 2100000, guid: d6a8112403cda6b4283ce5c7549bf210, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grille bottom furniture material
+    second: {fileID: 2100000, guid: d07aaeffcbc380641a71a99bb511f2c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grille furniture
+    second: {fileID: 2100000, guid: 9f688123a89639948a63ca842d715ff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hood material
+    second: {fileID: 2100000, guid: 15786ff8bfa9c0847921df2b915225b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plane material
+    second: {fileID: 2100000, guid: 067f2f015708245478efa8717dd403d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear bumper material
+    second: {fileID: 2100000, guid: a0c75b6b3007b0c40bc6abab36735204, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear door material
+    second: {fileID: 2100000, guid: b4bc92f2946210b419c4a109df4e27c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear fender material
+    second: {fileID: 2100000, guid: b7661fe8fba8eb143a2e5dc996adc0b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear flare material
+    second: {fileID: 2100000, guid: d5085099a8991594dbdeed6337189be2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear glass material
+    second: {fileID: 2100000, guid: bcdeacb7a6b5456498715209b0dcce70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear handle material
+    second: {fileID: 2100000, guid: 232bb4e49429e5e43b52f33d61462042, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Side glass material
+    second: {fileID: 2100000, guid: d2c37e7d041e26b4d9e034799315453d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Side mirror glass material
+    second: {fileID: 2100000, guid: aa986bf7bc52095408a8f09856bea0f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Side mirrror material
+    second: {fileID: 2100000, guid: 38ba0d7a81d005b43bcfa46d95e3e49a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trunk material
+    second: {fileID: 2100000, guid: d6052357a74fa6044863c4472593c512, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trunk molding
+    second: {fileID: 2100000, guid: f6435a8c6cbd7864aa001312c6274d70, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
