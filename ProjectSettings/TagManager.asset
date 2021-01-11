@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Car
+  - Dashboard
+  - COG
+  - Main_Camera_WheelRL
+  - Fixed_Camera_1
+  - Fixed_Camera_2
+  - Fixed_Camera_Driver_View
+  - Trailer
+  - Truck
+  - Body
+  - MapCamera
   layers:
   - Default
   - TransparentFX
@@ -13,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PP
   - 
   - 
   - 
