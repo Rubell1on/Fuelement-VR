@@ -8,6 +8,7 @@ public class FuelementVidController : MonoBehaviour
 {
     public CanvasGroup wrapper;
     public RectTransform logo;
+    public AudioSource audioSource;
     public enum FulementVidEventType { onFinish };
 
     public void Launch()
@@ -19,6 +20,7 @@ public class FuelementVidController : MonoBehaviour
             .append(FadeOut(0.5f))
             .append(() => LeanTween.dispatchEvent((int)FulementVidEventType.onFinish));
 
+        audioSource.Play();
     }
 
     public LTDescr FadeIn(float duration)

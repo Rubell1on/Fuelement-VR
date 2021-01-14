@@ -12,6 +12,16 @@ public class LaunchVidsController : MonoBehaviour
     {
         if (!noVids)
         {
+            if (!fuelementLogo.activeSelf)
+            {
+                if (mainMenu.activeSelf)
+                {
+                    mainMenu.SetActive(false);
+                }
+
+                fuelementLogo.SetActive(true);
+            }
+
             LeanTween.addListener((int)FuelementVidController.FulementVidEventType.onFinish, e =>
             {
                 fuelementLogo.SetActive(false);
