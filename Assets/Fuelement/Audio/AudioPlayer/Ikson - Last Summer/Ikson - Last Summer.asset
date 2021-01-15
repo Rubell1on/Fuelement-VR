@@ -18,3 +18,4 @@ MonoBehaviour:
   albumName: Last Summer
   year: 2020
   audioClip: {fileID: 8300000, guid: 4dd82f0aa46ccf4408f2b3008d3f42fb, type: 3}
+  albumIcon: {fileID: 2800000, guid: 4709aae729df81144a946b8762b017df, type: 3}

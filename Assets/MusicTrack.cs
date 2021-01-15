@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Music/MusicTrack")]
 public class MusicTrack : ScriptableObject
@@ -10,4 +11,5 @@ public class MusicTrack : ScriptableObject
     public string albumName;
     public int year;
     public AudioClip audioClip;
+    public Texture albumIcon;
 }

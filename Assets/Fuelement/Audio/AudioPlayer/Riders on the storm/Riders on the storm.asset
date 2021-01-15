@@ -19,3 +19,4 @@ MonoBehaviour:
   albumName: Riders on the storm
   year: 1971
   audioClip: {fileID: 8300000, guid: e5253ed726a973b4d94724029df5ae51, type: 3}
+  albumIcon: {fileID: 2800000, guid: 58661c1a4991a894ab9a1b3c92fa74ad, type: 3}

@@ -9,10 +9,9 @@ public class MusicPlayerWindowController : MonoBehaviour
     public float delay = 5;
     public float duration = 0.7f;
     public LeanTweenType easeType = LeanTweenType.easeInOutQuad;
-    Vector3 targetPosition = new Vector3(-505, -240, 0);
-    Vector3 outPosition = new Vector3(-765, -240, 0);
+    Vector3 targetPosition = new Vector3(-480, -240, 0);
+    Vector3 outPosition = new Vector3(-805, -240, 0);
     GameObject createdWindow;
-    
 
     public void CreateWindow(MusicTrack track)
     {
