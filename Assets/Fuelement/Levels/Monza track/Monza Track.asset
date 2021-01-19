@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2ca314f8c86934cb61c6fd1c8283bf, type: 3}
+  m_Name: Monza Track
+  m_EditorClassIdentifier: 
+  id:
+    m_Handle: 2
+  title: Autodromo Nazionale di Monza
+  description: The Autodromo Nazionale di Monza is a historic race track near the
+    city of Monza, north of Milan, in Italy. Built in 1922, it is the world's third
+    purpose-built motor racing circuit after those of Brooklands and Indianapolis.
+    The circuit's biggest event is the Italian Grand Prix. With the exception of
+    the 1980 running, the race has been hosted there since 1949.
+  background: {fileID: 2800000, guid: faa4d159dc938634e9d24d0b41cf6efd, type: 3}

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Music/MusicTrack")]
-public class MusicTrack : ScriptableObject
+namespace MusicPlayer
 {
-    public List<string> artists;
-    public string songName;
-    public string albumName;
-    public int year;
-    public AudioClip audioClip;
-    public Texture albumIcon;
+    [CreateAssetMenu(menuName = "Music/MusicTrack")]
+    public class MusicTrack : ScriptableObject
+    {
+        public List<string> artists;
+        public string songName;
+        public string albumName;
+        public int year;
+        public AudioClip audioClip;
+        public Texture albumIcon;
+    }
 }
