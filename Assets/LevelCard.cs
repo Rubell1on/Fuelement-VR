@@ -11,11 +11,8 @@ public class LevelCard : MonoBehaviour
 
     public void setLevelInfo(CustomLevel level)
     {
-        //if (background != null) 
-            background.texture = level.background;
-        if (title != null) 
-            title.text = level.title;
-        if (description != null) 
-            description.text = level.description;
+        if (background != null) background.texture = level.background;
+        if (title != null) title.text = level.title;
+        if (description != null) description.text = level.description;
     }
 }

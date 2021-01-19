@@ -40,7 +40,12 @@ public class LevelSelectorMenu : MonoBehaviour
 
     void RemoveAllCards()
     {
-        selectorCards.ForEach(l => Destroy(l));
+        selectorCards.ForEach(l => {
+            Destroy(l);
+            CustomButton cb = l.GetComponent<CustomButton>();
+            cb.onClick.RemoveAllListeners();
+        });
+
         selectorCards = new List<GameObject>();
     }
 
