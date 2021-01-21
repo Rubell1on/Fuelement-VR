@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LevelSelectorMenu : MonoBehaviour
+public class SelectorControlsMenu : MonoBehaviour
 {
-    public LevelsSelector selector;
-    public GameObject levelSelectorCardTemplate;
+    public SelectorController selector;
+    public GameObject selectorCardTemplate;
     public Transform parent;
-    public LevelSelectorMenuEvent onSelectionChande;
+    public SelectorMenuEvent onSelectionChande;
 
     List<GameObject> selectorCards = new List<GameObject>();
 
@@ -24,14 +24,14 @@ public class LevelSelectorMenu : MonoBehaviour
 
     void InitCards()
     {
-        selector.levels.ForEach(l =>
+        selector.elements.ForEach(l =>
         {
-            GameObject instance = Instantiate(levelSelectorCardTemplate, parent);
-            LevelCard card = instance.GetComponent<LevelCard>();
-            card.setLevelInfo(l);
+            GameObject instance = Instantiate(selectorCardTemplate, parent);
+            ISimpleDataCard card = instance.GetComponent<ISimpleDataCard>();
+            card.setCardData(l);
             CustomButton cb = instance.GetComponent<CustomButton>();
             cb.onClick.AddListener(() => {
-                CustomLevel cl = GetLevel(instance);
+                ASimpleData cl = GetLevel(instance);
                 onSelectionChande.Invoke(cl);
             });
             selectorCards.Add(instance);
@@ -54,12 +54,12 @@ public class LevelSelectorMenu : MonoBehaviour
         return selectorCards.FindIndex(c => c.Equals(card));
     }
 
-    CustomLevel GetLevel(GameObject card)
+    ASimpleData GetLevel(GameObject card)
     {
         int id = GetCardId(card);
-        return selector.levels[id];
+        return selector.elements[id];
     }
 
     [System.Serializable]
-    public class LevelSelectorMenuEvent : UnityEvent<CustomLevel> { };
+    public class SelectorMenuEvent : UnityEvent<ASimpleData> { };
 }

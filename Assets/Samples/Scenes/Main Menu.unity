@@ -1447,6 +1447,7 @@ GameObject:
   - component: {fileID: 217182516}
   - component: {fileID: 217182515}
   - component: {fileID: 217182518}
+  - component: {fileID: 217182517}
   m_Layer: 5
   m_Name: Level selector
   m_TagString: Untagged
@@ -1511,6 +1512,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217182513}
   m_CullTransparentMesh: 0
+--- !u!114 &217182517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217182513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e56dd517f363134893a3b01f0b5b075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selector: {fileID: 1428913705}
+  selectorCardTemplate: {fileID: 8918266003479318685, guid: 1c2e5f5d7dca9f441bb123b64b55a994,
+    type: 3}
+  parent: {fileID: 1914636740}
+  onSelectionChande:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1428913705}
+        m_MethodName: setCardData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &217182518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4400,7 +4431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardTemplate: {fileID: 1409676388256351549, guid: 873a0533588f7ec49b06d515e7ba9c2c,
     type: 3}
-  levels:
+  elements:
   - {fileID: 11400000, guid: eb28b4861210b6449871eee9c0e34ec8, type: 2}
   - {fileID: 11400000, guid: efae51e8e92e99e4db8ed06ad1297ff9, type: 2}
 --- !u!1 &1443719245
@@ -5347,7 +5378,6 @@ GameObject:
   - component: {fileID: 1914636740}
   - component: {fileID: 1914636743}
   - component: {fileID: 1914636741}
-  - component: {fileID: 1914636742}
   m_Layer: 5
   m_Name: Levels
   m_TagString: Untagged
@@ -5403,36 +5433,6 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
---- !u!114 &1914636742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1914636739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3262cf71154212a489b147d22de886eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selector: {fileID: 1428913705}
-  levelSelectorCardTemplate: {fileID: 8918266003479318685, guid: 1c2e5f5d7dca9f441bb123b64b55a994,
-    type: 3}
-  parent: {fileID: 1914636740}
-  onSelectionChande:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1428913705}
-        m_MethodName: setCardInfo
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &1914636743
 CanvasRenderer:
   m_ObjectHideFlags: 0
