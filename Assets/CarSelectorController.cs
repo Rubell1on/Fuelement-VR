@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectorController : MonoBehaviour
+public class CarSelectorController : MonoBehaviour
 {
     public GameObject cardTemplate;
-    public List<CustomLevel> elements;
+    public List<CarData> elements;
 
     GameObject cardInstance;
 
@@ -28,9 +28,9 @@ public class SelectorController : MonoBehaviour
         Destroy(cardInstance);
     }
 
-    public void setCardData(CustomLevel data)
+    public void setCardData(CarData data)
     {
-        LevelCard card = cardInstance.GetComponent<LevelCard>();
+        CarCard card = cardInstance.GetComponent<CarCard>();
         card.setCardData(data);
     }
 }

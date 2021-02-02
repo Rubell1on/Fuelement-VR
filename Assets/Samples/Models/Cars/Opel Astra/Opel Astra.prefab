@@ -2745,6 +2745,7 @@ GameObject:
   - component: {fileID: 2408472060240778476}
   - component: {fileID: 2408472060240778448}
   - component: {fileID: 2408472060240778472}
+  - component: {fileID: 2501798059113347782}
   m_Layer: 18
   m_Name: Opel Astra
   m_TagString: Car
@@ -2841,9 +2842,9 @@ MonoBehaviour:
   maxNetTorqueRPM: 2877
   torque: 14.661849
   wheelTireVelo: 2.1265216
-  minRPM: 1000
+  minRPM: 800
   maxRPM: 6500
-  canStall: 0
+  canStall: 1
   startEngine: 0
   revLimiter: 0
   revLimiterTime: 0.15
@@ -2855,27 +2856,26 @@ MonoBehaviour:
   engineOrientation: {x: 0, y: 0, z: 1}
   transmission: 1
   gearRatios:
-  - -3.8
+  - -3.31
   - 0
-  - 3.8
-  - 2.6
-  - 1.9
-  - 1.5
-  - 1.22
-  - 1
+  - 3.73
+  - 2.14
+  - 1.41
+  - 1.12
+  - 0.89
   neutral: 1
   first: 2
   firstReverse: 0
-  finalDriveRatio: 3.5
+  finalDriveRatio: 3.94
   differentialLockCoefficient: 80
   shifter: 0
-  automatic: 1
+  automatic: 0
   autoReverse: 0
   shiftDownRPM: 2000
   shiftUpRPM: 6000
   shiftTime: 0.3
   clutchMaxTorque: 449
-  autoClutch: 1
+  autoClutch: 0
   engageRPM: 1500
   disengageRPM: 1500
   _fuelConsumptionAtCostantSpeed: 4.3
@@ -3242,6 +3242,39 @@ MonoBehaviour:
   savingSetup: 0
   filePath: Assets\Samples\Car Setups\OpelAstra.txt
   usePersistentDataPath: 0
+--- !u!114 &2501798059113347782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408472060250988924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50625664f6d5bb4bb036140573d31d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drivetrain: {fileID: 2408472060240778450}
+  aerodynamicResistance: {fileID: 2408472060240778454}
+  soundController: {fileID: 2408472060240778456}
+  carDynamics: {fileID: 2408472060240778462}
+  axles: {fileID: 2408472060240778438}
+  axisCarController: {fileID: 2408472060240778452}
+  carDamage: {fileID: 2408472060240778460}
+  brakeLights: {fileID: 2408472060240778476}
+  arcader: {fileID: 2408472060240778448}
+  setup: {fileID: 2408472060240778472}
+  bodyRb: {fileID: 2408472060254044750}
+  wheels:
+  - {fileID: 2408472060240778440}
+  - {fileID: 2408472060240778446}
+  - {fileID: 2408472060240778444}
+  - {fileID: 2408472060240778442}
+  dashBoard: {fileID: 2408472060240778436}
+  fuelTank: {fileID: 0}
+  wings:
+  - {fileID: 2408472060240778458}
+  - {fileID: 2408472060240778432}
 --- !u!1 &2408472060250988926
 GameObject:
   m_ObjectHideFlags: 0

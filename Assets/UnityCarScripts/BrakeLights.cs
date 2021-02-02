@@ -16,12 +16,19 @@ public class BrakeLights: MonoBehaviour
 	float startValue;
 	float intensityValue;
 	
-	void Awake(){
-		carController = transform.GetComponent<CarController>();
-		if (brakeLights) startValue=brakeLights.GetFloat("_Intensity");
+	//void Awake(){
+	//	carController = transform.GetComponent<CarController>();
+	//	if (brakeLights) startValue=brakeLights.GetFloat("_Intensity");
 		
+	//}
+
+	void Start()
+	{
+		carController = transform.GetComponent<CarController>();
+		if (brakeLights) startValue = brakeLights.GetFloat("_Intensity");
+
 	}
-	
+
 	void FixedUpdate(){
 		if (brakeLights){
 			if (carController.brakeKey){

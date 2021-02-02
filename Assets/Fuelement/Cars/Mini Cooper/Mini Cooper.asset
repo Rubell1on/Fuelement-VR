@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdcbba51f44d544da82e87ac87558a8, type: 3}
+  m_Name: Mini Cooper
+  m_EditorClassIdentifier: 
+  carFullName: Mini Cooper
+  releaseYear: 2014
+  producerLogo: {fileID: 2800000, guid: eb55bac0e4cc12c4fbd536dc85f5e724, type: 3}
+  car: {fileID: 100082, guid: a3149a8f48177de4795ccc20a2c626a5, type: 3}
+  background:
+    serializedVersion: 2
+    rgba: 4291480266

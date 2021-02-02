@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelCard : MonoBehaviour, ISimpleDataCard
+public class LevelCard : MonoBehaviour
 {
     public RawImage background;
     public Text title;

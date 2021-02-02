@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdcbba51f44d544da82e87ac87558a8, type: 3}
+  m_Name: Temp
+  m_EditorClassIdentifier: 
+  carFullName: Temp Car
+  releaseYear: 1920
+  producerLogo: {fileID: 2800000, guid: 2c33a51c097fb3b4eacdf2b2fbfcb3b8, type: 3}
+  car: {fileID: 2408472060250988924, guid: 42fad441a7d7a6041a047b3043ce7225, type: 3}
+  background:
+    serializedVersion: 2
+    rgba: 4291480266

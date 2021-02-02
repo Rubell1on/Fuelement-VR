@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SelectorControlsMenu : MonoBehaviour
+public class CarSelectorControlsMenu : MonoBehaviour
 {
-    public SelectorController selector;
-    public PagesController pages;
+    public CarSelectorController selector;
     public GameObject selectorCardTemplate;
     public Transform parent;
     public SelectorMenuEvent onSelectionChande;
@@ -28,17 +27,12 @@ public class SelectorControlsMenu : MonoBehaviour
         selector.elements.ForEach(l =>
         {
             GameObject instance = Instantiate(selectorCardTemplate, parent);
-            LevelCard card = instance.GetComponent<LevelCard>();
+            CarSelectorCard card = instance.GetComponent<CarSelectorCard>();
             card.setCardData(l);
             CustomButton cb = instance.GetComponent<CustomButton>();
-            cb.onPointerEnter.AddListener(() =>
-            {
-                CustomLevel cl = GetLevel(instance);
+            cb.onPointerEnter.AddListener(() => {
+                CarData cl = GetCar(instance);
                 onSelectionChande.Invoke(cl);
-            });
-            cb.onClick.AddListener(() =>
-            {
-                pages.OpenPage(1);
             });
             selectorCards.Add(instance);
         });
@@ -60,12 +54,12 @@ public class SelectorControlsMenu : MonoBehaviour
         return selectorCards.FindIndex(c => c.Equals(card));
     }
 
-    CustomLevel GetLevel(GameObject card)
+    CarData GetCar(GameObject card)
     {
         int id = GetCardId(card);
         return selector.elements[id];
     }
 
     [System.Serializable]
-    public class SelectorMenuEvent : UnityEvent<CustomLevel> { };
+    public class SelectorMenuEvent : UnityEvent<CarData> { };
 }

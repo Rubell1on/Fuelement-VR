@@ -1774,7 +1774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tankCapacity: 50
-  _currentFuel: 50
+  _currentFuel: 49.56516
   _tankWeight: 10
   _fuelDensity: 0.73722
 --- !u!54 &5400002
@@ -2076,6 +2076,7 @@ GameObject:
   - component: {fileID: 11400034}
   - component: {fileID: 11400030}
   - component: {fileID: 11400038}
+  - component: {fileID: 2592880897258831980}
   m_Layer: 18
   m_Name: Mini Cooper
   m_TagString: Car
@@ -2179,11 +2180,11 @@ MonoBehaviour:
   differentialLockCoefficient: 80
   shifter: 0
   automatic: 1
-  autoReverse: 1
+  autoReverse: 0
   shiftDownRPM: 2000
-  shiftUpRPM: 0
+  shiftUpRPM: 6000
   shiftTime: 0.3
-  clutchMaxTorque: 0
+  clutchMaxTorque: 449
   autoClutch: 1
   engageRPM: 1500
   disengageRPM: 1500
@@ -2421,14 +2422,14 @@ MonoBehaviour:
   veloSteerTime: 0.05
   veloSteerReleaseTime: 0.05
   steerCorrectionFactor: 0
-  steerAssistance: 1
+  steerAssistance: 0
   SteerAssistanceMinVelocity: 20
-  TCS: 1
+  TCS: 0
   TCSTriggered: 0
   TCSThreshold: 0
   TCSMinVelocity: 20
   externalTCSThreshold: 0
-  ABS: 1
+  ABS: 0
   ABSTriggered: 0
   ABSThreshold: 0
   ABSMinVelocity: 20
@@ -2458,19 +2459,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   track: {fileID: 13400000, guid: 1ad8f9da68b36fe48b5b64aef0044a74, type: 2}
-  trackGrip: 1
+  trackGrip: 2
   trackRollingFriction: 0.018
   trackStaticFriction: 1
   grass: {fileID: 13400000, guid: 5cb308b99f641754c9a4b74871d02d50, type: 2}
-  grassGrip: 0.6
+  grassGrip: 1
   grassRollingFriction: 0.05
   grassStaticFriction: 0.6
   sand: {fileID: 13400000, guid: 3b3649b534eb19c42b0dcf1fcd2654f6, type: 2}
-  sandGrip: 0.6
+  sandGrip: 1
   sandRollingFriction: 0.15
   sandStaticFriction: 0.8
   offRoad: {fileID: 13400000, guid: 3a41f8cd60a34a34797a696eb065f4a8, type: 2}
-  offRoadGrip: 0.6
+  offRoadGrip: 1
   offRoadRollingFriction: 0.05
   offRoadStaticFriction: 0.9
 --- !u!114 &11400018
@@ -2537,10 +2538,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a41182e3ba7e4c4ea3df6296020fa19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingSetup: 1
+  loadingSetup: 0
   savingSetup: 0
   filePath: Assets\Samples\Car Setups\mini.txt
   usePersistentDataPath: 0
+--- !u!114 &2592880897258831980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50625664f6d5bb4bb036140573d31d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drivetrain: {fileID: 11400028}
+  aerodynamicResistance: {fileID: 11400024}
+  soundController: {fileID: 11400022}
+  carDynamics: {fileID: 11400016}
+  axles: {fileID: 11400008}
+  axisCarController: {fileID: 11400026}
+  carDamage: {fileID: 11400018}
+  brakeLights: {fileID: 11400034}
+  arcader: {fileID: 11400030}
+  setup: {fileID: 11400038}
+  bodyRb: {fileID: 5400000}
+  wheels:
+  - {fileID: 11400006}
+  - {fileID: 11400000}
+  - {fileID: 11400002}
+  - {fileID: 11400004}
+  dashBoard: {fileID: 11400010}
+  fuelTank: {fileID: 11400036}
+  wings:
+  - {fileID: 11400020}
+  - {fileID: 11400014}
 --- !u!1 &100084
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,8 +13,9 @@ public class CustomButtonEditor : UnityEditor.UI.ButtonEditor
 
         base.OnInspectorGUI();
         SerializedProperty onPointerEnter = serializedObject.FindProperty("onPointerEnter");
-        //EditorGUIUtility.LookLikeControls();
         EditorGUILayout.PropertyField(onPointerEnter);
+        SerializedProperty onPointerExit = serializedObject.FindProperty("onPointerExit");
+        EditorGUILayout.PropertyField(onPointerExit);
 
         if (GUI.changed)
         {
