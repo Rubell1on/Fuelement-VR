@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Samples/Scenes/Main Menu.unity
     guid: c3843268ea27bfc45884e7a057128c9b
   - enabled: 1
-    path: Assets/Samples/Scenes/Pixelactive City.unity
-    guid: 7b0ffc8427ee8e6489d5cd700de411f1
+    path: Assets/Samples/Scenes/LoadingScreen.unity
+    guid: fbac17f0345fb114aa47673308c7b7be
   - enabled: 1
     path: Assets/Samples/Scenes/Monza Track.unity
     guid: 27389c0e8ea60dd4aaca0223af137a17
+  - enabled: 1
+    path: Assets/Samples/Scenes/Pixelactive City.unity
+    guid: 7b0ffc8427ee8e6489d5cd700de411f1
   m_configObjects: {}

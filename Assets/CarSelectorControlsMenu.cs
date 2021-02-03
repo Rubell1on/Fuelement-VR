@@ -8,7 +8,6 @@ public class CarSelectorControlsMenu : MonoBehaviour
     public CarSelectorController selector;
     public GameObject selectorCardTemplate;
     public Transform parent;
-    public SelectorMenuEvent onSelectionChande;
 
     List<GameObject> selectorCards = new List<GameObject>();
 
@@ -30,9 +29,15 @@ public class CarSelectorControlsMenu : MonoBehaviour
             CarSelectorCard card = instance.GetComponent<CarSelectorCard>();
             card.setCardData(l);
             CustomButton cb = instance.GetComponent<CustomButton>();
+
             cb.onPointerEnter.AddListener(() => {
                 CarData cl = GetCar(instance);
-                onSelectionChande.Invoke(cl);
+                selector.onSelectionChange.Invoke(cl);
+            });
+
+            cb.onClick.AddListener(() =>
+            {
+                selector.SetSelection(l);
             });
             selectorCards.Add(instance);
         });
@@ -59,7 +64,4 @@ public class CarSelectorControlsMenu : MonoBehaviour
         int id = GetCardId(card);
         return selector.elements[id];
     }
-
-    [System.Serializable]
-    public class SelectorMenuEvent : UnityEvent<CarData> { };
 }

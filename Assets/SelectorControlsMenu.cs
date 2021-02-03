@@ -9,7 +9,6 @@ public class SelectorControlsMenu : MonoBehaviour
     public PagesController pages;
     public GameObject selectorCardTemplate;
     public Transform parent;
-    public SelectorMenuEvent onSelectionChande;
 
     List<GameObject> selectorCards = new List<GameObject>();
 
@@ -31,13 +30,15 @@ public class SelectorControlsMenu : MonoBehaviour
             LevelCard card = instance.GetComponent<LevelCard>();
             card.setCardData(l);
             CustomButton cb = instance.GetComponent<CustomButton>();
+            
             cb.onPointerEnter.AddListener(() =>
             {
                 CustomLevel cl = GetLevel(instance);
-                onSelectionChande.Invoke(cl);
+                selector.onSelectionChange.Invoke(cl);
             });
             cb.onClick.AddListener(() =>
             {
+                selector.SetSelection(l);
                 pages.OpenPage(1);
             });
             selectorCards.Add(instance);
@@ -65,7 +66,4 @@ public class SelectorControlsMenu : MonoBehaviour
         int id = GetCardId(card);
         return selector.elements[id];
     }
-
-    [System.Serializable]
-    public class SelectorMenuEvent : UnityEvent<CustomLevel> { };
 }
