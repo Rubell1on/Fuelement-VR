@@ -14,6 +14,8 @@ namespace MusicPlayer
         Vector3 targetPosition = new Vector3(-480, -240, 0);
         Vector3 outPosition = new Vector3(-805, -240, 0);
         GameObject createdWindow;
+        LTSeq seq;
+
 
         public void CreateCurrentTrackWindow(MusicTrack track)
         {
@@ -23,24 +25,32 @@ namespace MusicPlayer
                 createdWindow.GetComponent<MusicPlayerWindow>().SetData(track);
                 Show();
             }
+        }
 
-            void Show()
+        public void Show()
+        {
+            if (!LeanTween.isTweening(createdWindow))
             {
-                if (!LeanTween.isTweening(createdWindow))
-                {
-                    LTSeq seq = LeanTween.sequence();
-                    seq
-                        .insert(LeanTween.moveLocal(createdWindow, outPosition, 0))
-                        .insert(LeanTween.moveLocal(createdWindow, targetPosition, duration).setEase(easeType))
-                        .append(() =>
-                        {
-                            LTDescr descr = LeanTween.moveLocal(createdWindow, outPosition, duration).setEase(easeType);
-                            descr.delay = delay;
-                            descr.setOnComplete(() => Destroy(createdWindow));
-                        });
-                }
+                seq = LeanTween.sequence();
+                seq
+                    .insert(LeanTween.moveLocal(createdWindow, outPosition, 0))
+                    .insert(LeanTween.moveLocal(createdWindow, targetPosition, duration).setEase(easeType))
+                    .append(() => _Hide(delay));
             }
+        }
 
+        public void Hide()
+        {
+            _Hide(0f);
+        }
+
+        LTDescr _Hide(float delay)
+        {
+            LTDescr descr = LeanTween.moveLocal(createdWindow, outPosition, duration).setEase(easeType);
+            descr.delay = delay;
+            descr.setOnComplete(() => Destroy(createdWindow));
+
+            return descr;
         }
     }
 }

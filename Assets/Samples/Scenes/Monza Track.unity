@@ -3571,7 +3571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400082, guid: a3149a8f48177de4795ccc20a2c626a5, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400082, guid: a3149a8f48177de4795ccc20a2c626a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3812,7 +3812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400216, guid: fa90e9f7342a12b49b8fc8c53e2b6531, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400216, guid: fa90e9f7342a12b49b8fc8c53e2b6531, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3871,6 +3871,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1487113290}
     m_Modifications:
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: minRPM
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: maxPower
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: maxTorque
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: maxPowerRPM
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: maxTorqueRPM
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: engineInertia
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2408472060240778472, guid: 42fad441a7d7a6041a047b3043ce7225,
         type: 3}
       propertyPath: loadingSetup
@@ -3935,6 +3965,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Opel Astra
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060254044750, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1200.0001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42fad441a7d7a6041a047b3043ce7225, type: 3}
@@ -4188,7 +4223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400058, guid: dd5316946e8b1614fbeb86bc7cc474cd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400058, guid: dd5316946e8b1614fbeb86bc7cc474cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4416,10 +4451,10 @@ Transform:
   - {fileID: 1264446564}
   - {fileID: 376899337}
   - {fileID: 989566112}
-  - {fileID: 993521383}
   - {fileID: 1490746484}
   - {fileID: 1943600221}
   - {fileID: 217580987}
+  - {fileID: 993521383}
   - {fileID: 1265034944}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -6452,7 +6487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400956, guid: f05f643559db29043983ce384747bd40, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400956, guid: f05f643559db29043983ce384747bd40, type: 3}
       propertyPath: m_LocalPosition.x

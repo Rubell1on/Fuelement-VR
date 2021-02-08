@@ -8,13 +8,15 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class StartGame : MonoBehaviour {
 	public CarCamerasController carCamerasController;
 	public CarCamerasController mapCameraController;
 	GameObject StartTimer;
 	SettingsMenu settingsMenu;
-	public GameObject[] cars;
+	public List<GameObject> cars;
 	GameObject selectedCar;
 	bool altNormalForce;
 	public Skidmarks skidmarks;
@@ -27,47 +29,56 @@ public class StartGame : MonoBehaviour {
 	
 	GameObject unityCar;
 	
-	void Awake () {
-		//Application.targetFrameRate = 30;
-		if (carCamerasController==null) carCamerasController = Camera.main.GetComponent<CarCamerasController>();
+	//void Awake () {
+	//	//Application.targetFrameRate = 30;
+		
+	//}
+	
+	void Start(){
+		if (carCamerasController == null) carCamerasController = Camera.main.GetComponent<CarCamerasController>();
 		settingsMenu = GetComponent<SettingsMenu>();
-		carCameras = Camera.main.GetComponent<CarCameras>();
-		if (mapCameraController==null){
-			if (GameObject.FindWithTag("MapCamera")) mapCameraController = GameObject.FindWithTag("MapCamera").GetComponent<CarCamerasController>();
-			else if (GameObject.Find("MapCamera")) mapCameraController = GameObject.Find("MapCamera").GetComponent<CarCamerasController>();
+        carCameras = Camera.main.GetComponent<CarCameras>();
+        if (mapCameraController == null)
+        {
+            if (GameObject.FindWithTag("MapCamera")) mapCameraController = GameObject.FindWithTag("MapCamera").GetComponent<CarCamerasController>();
+            else if (GameObject.Find("MapCamera")) mapCameraController = GameObject.Find("MapCamera").GetComponent<CarCamerasController>();
+        }
+
+        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+		foreach (object o in obj)
+		{
+			GameObject g = (GameObject)o;
+			if (g.GetComponent<Light>() != null) mlight = g.GetComponent<Light>();
 		}
-		
-		object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
-		foreach (object o in obj){
-			GameObject g = (GameObject) o;
-			if (g.GetComponent<Light>()!=null) mlight=g.GetComponent<Light>();
-		}
-		
-		Time.fixedDeltaTime=fixedTimeStep;
-		
-		if (cars.Length==0) cars=GameObject.FindGameObjectsWithTag("Car");
-		
-		foreach (GameObject car in cars) {
-			if (car!=null) {
+
+		Time.fixedDeltaTime = fixedTimeStep;
+
+		if (cars.Count == 0) cars = GameObject.FindGameObjectsWithTag("Car").ToList();
+
+		foreach (GameObject car in cars)
+		{
+			if (car != null)
+			{
 				car.SetActiveRecursively(true);
-				if (car.transform.GetComponent<CarDebug>()!=null) car.transform.GetComponent<CarDebug>().enabled=false;
-				if (car.transform.GetComponent<Setup>()!=null) car.transform.GetComponent<Setup>().enabled=false;
-				if (car.transform.GetComponent<CarDynamics>().skidmarks==null){
+				if (car.transform.GetComponent<CarDebug>() != null) car.transform.GetComponent<CarDebug>().enabled = false;
+				if (car.transform.GetComponent<Setup>() != null) car.transform.GetComponent<Setup>().enabled = false;
+				if (car.transform.GetComponent<CarDynamics>().skidmarks == null)
+				{
 					Skidmarks skidclone;
-					if (skidmarks) {
-						skidclone=Instantiate(skidmarks, Vector3.zero, Quaternion.identity) as Skidmarks;
-						car.transform.GetComponent<CarDynamics>().skidmarks=skidclone;
+					if (skidmarks)
+					{
+						skidclone = Instantiate(skidmarks, Vector3.zero, Quaternion.identity) as Skidmarks;
+						car.transform.GetComponent<CarDynamics>().skidmarks = skidclone;
 					}
 				}
 			}
 		}
-	}
-	
-	void Start(){
+
 		foreach (GameObject car in cars) {
 			if (car!=null) DisableObject(car);
 		}
-		if (cars.Length!=0 && cars[0]!=null) {
+
+		if (cars.Count!=0 && cars[0]!=null) {
 			lastIndex=-1;
 			selectedCar=ChangeCar(0,lastIndex);
 		}
@@ -107,17 +118,17 @@ public class StartGame : MonoBehaviour {
 		if (settingsMenu!=null) StartCoroutine(settingsMenu.ChangeCar(car));
 	}	
 	
-	void SelectNextCar(bool next){
+	public void SelectNextCar(bool next){
 		lastIndex=index;
 		if (next==true) index++;
 		else index--;
-		if (index>cars.Length-1) index=0;
-		if (index<0) index=cars.Length-1;
+		if (index>cars.Count-1) index=0;
+		if (index<0) index=cars.Count-1;
 		selectedCar=ChangeCar(index, lastIndex);	
 	}
 	
 	void Update(){
-		if (cars.Length>=1){
+		if (cars.Count>=1){
 			if (Input.GetKeyUp (KeyCode.PageUp)) {
 				SelectNextCar(true);
 			}
@@ -154,9 +165,9 @@ public class StartGame : MonoBehaviour {
 		int sign=(Random.value<0.5f?-1:1);
 		unityCar.transform.position=Camera.main.transform.TransformPoint(Vector3.forward*(10+Random.value*10) + Vector3.up*3 + sign*Vector3.right*Random.value*10);
 		unityCar.transform.eulerAngles=new Vector3(0, Camera.main.transform.eulerAngles.y,0);
-		Resize(ref cars,cars.Length+1);
-		cars[cars.Length-1]=unityCar;
-		settingsMenu.carsNumber=cars.Length;
+		Resize(ref cars,cars.Count+1);
+		cars[cars.Count-1]=unityCar;
+		settingsMenu.carsNumber=cars.Count;
 		
 		if (carCameras.target==null) {
 			carCameras.target=unityCar.transform;
@@ -180,15 +191,27 @@ public class StartGame : MonoBehaviour {
 		return selectedCar;
 	}
 	
-	public static void Resize<T>(ref T[] array, int newSize){
-		T[] sourceArray = array;
+	public static void Resize<T>(ref List<T> array, int newSize){
+		List<T> sourceArray = array;
 		if (sourceArray == null){
-			array = new T[newSize];
+			array = new List<T>(newSize);
 		}
-		else if (sourceArray.Length != newSize){
-			T[] destinationArray = new T[newSize];
-			sourceArray.CopyTo(destinationArray, 0);
+		else if (sourceArray.Count != newSize){
+			List<T> destinationArray = new List<T>(newSize);
+			sourceArray.CopyTo(destinationArray.ToArray(), 0);
 			array = destinationArray;
 		}
-	}	
+	}
+	
+	public void AddCar(GameObject car)
+    {
+		GameObject selectedCar = Instantiate(car, gameObject.transform);
+
+		cars = cars.Where(c => c != null).ToList();
+		cars.Add(selectedCar);
+		this.selectedCar = selectedCar;
+
+		SettingsMenu sm = GetComponent<SettingsMenu>();
+		sm.selectedCar = selectedCar;
+    }
 }

@@ -11,6 +11,13 @@ namespace MusicPlayer
         public Text year;
         public RawImage albumIcon;
 
+        public MusicPlayerWindowController playerController;
+
+        private void Awake()
+        {
+            playerController = FindObjectOfType<MusicPlayerWindowController>();
+        }
+
         void Start()
         {
             RectTransform albumTransform = albumIcon.GetComponent<RectTransform>();
@@ -32,6 +39,11 @@ namespace MusicPlayer
             artists.text = artistsString.Length > 0 ? artistsString : "";
             year.text = track.year != 0 ? track.year.ToString() : "";
             albumIcon.texture = track.albumIcon != null ? track.albumIcon : null;
+        }
+
+        public void Hide()
+        {
+            playerController.Hide();
         }
     }
 }

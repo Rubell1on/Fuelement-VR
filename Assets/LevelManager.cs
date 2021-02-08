@@ -7,17 +7,9 @@ public class LevelManager : MonoBehaviour
 {
     public enum DefaultScreens { MainMenu, LoadingScreen };
 
-    //public void Load(int id)
-    //{
-    //    AsyncOperation loadingScreen = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-    //    loadingScreen.completed += (o) =>
-    //    {
-    //        AsyncOperation level = SceneManager.LoadSceneAsync(id, LoadSceneMode.Additive);
-    //    };
-    //}
-
     void Start()
     {
+        DontDestroyOnLoad(this);
         //StartCoroutine(Load(2));
     }
 
@@ -58,8 +50,18 @@ public class LevelManager : MonoBehaviour
 
         targetLevel.completed += o =>
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene())
+                .completed += (co) => {
+                    SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen)
+                        .completed += (lo) => {
+                            GameObject collection = GameObject.Find("CarCollection");
+                            StartGame sg = collection.GetComponent<StartGame>();
+
+                            sg.AddCar(car.car);
+                            sg.SelectNextCar(true);
+                        };
+                };
+            
         };
 
         yield return null;
@@ -101,8 +103,12 @@ public class LevelManager : MonoBehaviour
 
         targetLevel.completed += o =>
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene())
+                .completed += ao =>
+                {
+                    SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen);
+                };
+            
         };
 
         yield return null;
