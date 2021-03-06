@@ -214,6 +214,85 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &97351339
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1487113290}
+    m_Modifications:
+    - target: {fileID: 2408472060240778436, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: digitalSpeedoUnit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060240778472, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: loadingSetup
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.679672
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 52.6389
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.9989
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98607916
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0057724155
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.16615213
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0028503137
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.59800005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -19.131
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.432
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408472060250988924, guid: 42fad441a7d7a6041a047b3043ce7225,
+        type: 3}
+      propertyPath: m_Name
+      value: Opel Astra
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42fad441a7d7a6041a047b3043ce7225, type: 3}
 --- !u!1001 &381377523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,7 +1330,7 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 210296081ec625b4c9e6fb036371cdcf, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1995204434}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 210296081ec625b4c9e6fb036371cdcf, type: 3}
 --- !u!114 &1354754997 stripped
@@ -1358,7 +1437,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 728.63885, y: 77.10138, z: 722.678}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1726408231}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1392,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e90354aaca8898458a3c5d4588de725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedCar: {fileID: 0}
+  selectedCar: {fileID: 1726408217}
   stressTest: 0
   grid: {fileID: 2800000, guid: f50d0adea005dc646945de5ef76a0052, type: 3}
   gridWidth: 354
@@ -1532,6 +1612,112 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   carsNumber: 0
+--- !u!1 &1548650262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1548650264}
+  - component: {fileID: 1548650263}
+  - component: {fileID: 1548650265}
+  m_Layer: 0
+  m_Name: MatlabAPI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1548650263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548650262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb43256c77df6643b6f0526ec612b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  host: localhost
+  port: 3000
+  drivetrain: {fileID: 1726408229}
+  connected: 0
+--- !u!4 &1548650264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548650262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.118694, y: 5.688131, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1548650265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548650262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a877b2374f536ee4eb77862d07972166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workingDirectory: H://Unity Projects/Fuelement-VR/Assets/Fuelement/Scripts/MatlabAPI/matlab
+  state: 0
+  onStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1548650263}
+        m_MethodName: Connect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &1726408217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2408472060250988924, guid: 42fad441a7d7a6041a047b3043ce7225,
+    type: 3}
+  m_PrefabInstance: {fileID: 97351339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726408229 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2408472060240778450, guid: 42fad441a7d7a6041a047b3043ce7225,
+    type: 3}
+  m_PrefabInstance: {fileID: 97351339}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726408217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba92132a60e9f64381cf632baf775a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1726408231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2408472060250635612, guid: 42fad441a7d7a6041a047b3043ce7225,
+    type: 3}
+  m_PrefabInstance: {fileID: 97351339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1995204434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2408472060250635600, guid: 42fad441a7d7a6041a047b3043ce7225,
+    type: 3}
+  m_PrefabInstance: {fileID: 97351339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2122646983
 GameObject:
   m_ObjectHideFlags: 0

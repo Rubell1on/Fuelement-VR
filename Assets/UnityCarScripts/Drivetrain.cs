@@ -551,7 +551,7 @@ public class Drivetrain : MonoBehaviour {
 	}		
 		
 	void FixedUpdate () 
-	{		
+	{
 		if (clutch==null) {clutch= new Clutch();CalcClutchTorque();}
 		
 		if (shifter==true) automatic=false;
