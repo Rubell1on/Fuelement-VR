@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class MatlabProcess : MonoBehaviour
 {
     public string workingDirectory = "H://Unity Projects/Fuelement-VR/Assets/Fuelement/Scripts/MatlabAPI/matlab";
-    public enum MatlabProcessState {Stopped, Starting, LoadingFIS, LaunchingServer, ListeningConnections, Connected };
+    public enum MatlabProcessState {Stopped, Starting, LoadingFIS, LaunchingServer, ListeningConnections, Connected, Disconnected };
 
     public MatlabProcessState state = MatlabProcessState.Stopped;
     public OnStateChangeEvent onStateChanged;

@@ -151,12 +151,13 @@ public class StartGame : MonoBehaviour {
 			if (mlight.shadows == LightShadows.None) mlight.shadows = LightShadows.Soft;
 			else mlight.shadows = LightShadows.None;
 		}
-		
-		if (dashBoard!=null){
-			if (carCameras.driverView==true) dashBoard.showGUIDashboard=false;
-			else dashBoard.showGUIDashboard=true;
-		}
-	}
+
+        if (dashBoard != null)
+        {
+            if (carCameras.driverView == true) dashBoard.showGUIDashboard = false;
+            else dashBoard.showGUIDashboard = true;
+        }
+    }
 
 #if UNITY_EDITOR
 
