@@ -3,14 +3,14 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.Audio;
+using Newtonsoft.Json;
 
 public class GameSettings : MonoBehaviour
 {
-    const string settingsFolder = "Fuelement/Settings";
-    public string settingsPath {
-        get { return $"{Application.dataPath}/{settingsFolder}/settings.json"; }
+    const string folderPath = "Fuelement/Settings";
+    public string Path {
+        get { return $"{Application.dataPath}/{folderPath}/settings.json"; }
     }
 
     [Header("Audio settings")]
@@ -72,22 +72,22 @@ public class GameSettings : MonoBehaviour
         AudioSettings audioSettings = _SaveAudioSettings();
 
         Settings settings = new Settings(audioSettings);
-        string settingsString = JsonUtility.ToJson(settings);
+        string settingsString = JsonConvert.SerializeObject(settings);
 
-        File.WriteAllText(settingsPath, settingsString);
+        File.WriteAllText(Path, settingsString);
     }
 
     public void LoadSettings()
     {
-        if (File.Exists(settingsPath))
+        if (File.Exists(Path))
         {
-            string settingsStrings = File.ReadAllText(settingsPath);
-            Settings settings = JsonUtility.FromJson<Settings>(settingsStrings);
+            string settingsStrings = File.ReadAllText(Path);
+            Settings settings = JsonConvert.DeserializeObject<Settings>(settingsStrings);
 
             _LoadAudioSettings(settings.audio);
         } else
         {
-            Debug.LogError($"Settings file in '{settingsPath}' not found");
+            Debug.LogError($"Settings file in '{Path}' not found");
         }
     }
 
@@ -142,7 +142,7 @@ public class GameSettings : MonoBehaviour
 }
 
 [Serializable]
-public class AudioSettings : SerializableDictionary<string, float>
+public class AudioSettings : Dictionary<string, float>
 {
     public enum MixerGroupType { Master, Car, Music, Environment, Misc };
 
