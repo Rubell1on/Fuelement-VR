@@ -4,7 +4,6 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
-using static DriverBehavior;
 
 public class DriverBehaviorController: MonoBehaviour
 {
