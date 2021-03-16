@@ -1027,11 +1027,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 407569099}
+  - component: {fileID: 407569103}
   - component: {fileID: 407569098}
   - component: {fileID: 407569100}
   - component: {fileID: 407569102}
   - component: {fileID: 407569101}
-  - component: {fileID: 407569103}
   m_Layer: 0
   m_Name: DriverBehavior
   m_TagString: Untagged

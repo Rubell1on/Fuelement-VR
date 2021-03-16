@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 public class DriverBehaviorController: MonoBehaviour
 {
-    const string folderPath = "Fuelement/DriverBehavior";
+    const string folderPath = "Fuelement/DriverBehavior/Sessions";
 
     public string FolderPath
     {
@@ -26,8 +26,8 @@ public class DriverBehaviorController: MonoBehaviour
     }
 
     public List<DriverBehavior> driverBehaviors;
-    Dictionary<string, List<DriverActivity>> driverActivities;
     public bool active = false;
+    Dictionary<string, List<DriverActivity>> driverActivities;
 
     void Start()
     {
