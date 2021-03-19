@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: 23ca0926a419dbb47bb82019502135e3
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body material
+    second: {fileID: 2100000, guid: 99dd83d4b93c15d42b45d2e839da78cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bottom material.001
+    second: {fileID: 2100000, guid: 8b1cf260d3b62094e893979fbb2fb7bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Car glass
+    second: {fileID: 2100000, guid: 5b5b1f4a4fe4e7e4e8de43ae19dbcbfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dashboard multimedia buttons
+    second: {fileID: 2100000, guid: b4981ce444f8e4e48a56e5d3433949bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dashboard multimedia main
+    second: {fileID: 2100000, guid: 6b60771285461da4c800055b10e9a37a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dashboard multimedia secondary
+    second: {fileID: 2100000, guid: 65b23f19f5e222c41a6b0e282a1f7c0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door handle main
+    second: {fileID: 2100000, guid: 39458382389940d45955005eda5aa731, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door handle top
+    second: {fileID: 2100000, guid: 9969dcd87551c544f845a94892006565, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door shroud isertion
+    second: {fileID: 2100000, guid: f7b0f084c0cb0bc4e92031138cba890e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Exhaust pipe.001
+    second: {fileID: 2100000, guid: 4b5adec0db9608d4d97342ff46a7c8ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flat material
+    second: {fileID: 2100000, guid: 09f77da3e562b1e4c84434664d33a338, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor shroud
+    second: {fileID: 2100000, guid: 7c6ce3737bce3134c9a4463dfdf29d05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front bumper metal
+    second: {fileID: 2100000, guid: 2778b2e72f4d4284097b76b9f8e411e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare edging
+    second: {fileID: 2100000, guid: 37fb5b926775d2b42869135a5f86b64f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare main glass
+    second: {fileID: 2100000, guid: 604bca778170bba469565f6994054919, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare shroud
+    second: {fileID: 2100000, guid: 9c21944579547a141848937f4a2b646d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front flare small glass
+    second: {fileID: 2100000, guid: 4f5c532aa2d33ff47948bed8fef02b51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front grille black insertions
+    second: {fileID: 2100000, guid: 082be1397c927b34d995f45e30ce8ad2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front grille insertions
+    second: {fileID: 2100000, guid: 8c82e63e1ab668d4e8568e518a659753, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front grille lamp
+    second: {fileID: 2100000, guid: 16eefa6ace7142b41b07206f5a0d0a40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Front grille logo insertions
+    second: {fileID: 2100000, guid: 1f70c08b15996f84cba7dcfc8b60f123, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gear shifter handle
+    second: {fileID: 2100000, guid: 8b34abb1f4a1ab647bd7a9109d13195a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gear shifter lether
+    second: {fileID: 2100000, guid: 1afa4f9b0bd4b83459b230276c7f4dc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head guides
+    second: {fileID: 2100000, guid: b6399a456044d554b94a60d2cc3b4c55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior column
+    second: {fileID: 2100000, guid: c3ff86b57e1f5df4c9c25ab221ff5b01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior dark gray shroud
+    second: {fileID: 2100000, guid: 79989962bb465dc4aaea83a2a1a9eae3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior light gray shroud
+    second: {fileID: 2100000, guid: 6c81d09bb37f9b54e971f6fe1de37e15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Interior top shroud
+    second: {fileID: 2100000, guid: c4da86725daa065478699018fb7dfe4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Parking break armrest
+    second: {fileID: 2100000, guid: 7c67f3aacb8c09e45b5788a862b41b47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Parking break handle arc
+    second: {fileID: 2100000, guid: 90452496334bece45a06d6e6666d9f63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Parking break handle stick
+    second: {fileID: 2100000, guid: bb3723228d59eaf49a5eeef10d844707, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Parking break tray
+    second: {fileID: 2100000, guid: c7f553ac9ad8e5f43bb67ec607bd1da7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pedal arc
+    second: {fileID: 2100000, guid: e724a429c47eda740a285458865dab0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pedal pad
+    second: {fileID: 2100000, guid: 9087bdff9ef5c184cb2476ae79f12651, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Prking break cloth
+    second: {fileID: 2100000, guid: 515094abebeb0bf449e8728efccb07f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear flare material.001
+    second: {fileID: 2100000, guid: 0a9835ab4a0bfe04b8b5728013054285, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Safety belt connector
+    second: {fileID: 2100000, guid: 0fd62ff82a6d087479ee2b7800386f60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seat material
+    second: {fileID: 2100000, guid: 429145776de031443bf01436959047a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Seet platform
+    second: {fileID: 2100000, guid: 4dcde0ff643aa1e4ea8f2270ac316c9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Side mirror glass material.001
+    second: {fileID: 2100000, guid: 1b3e1a2e66e2ba2419c48894e34b4f62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel additions material.001
+    second: {fileID: 2100000, guid: b388728f26f9f7041ad59087724459ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel column
+    second: {fileID: 2100000, guid: 0d9dc0cc63625a84090c601c697062c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel column controls
+    second: {fileID: 2100000, guid: f97a4fe7720b7b84b863e86edd398a7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel column fire
+    second: {fileID: 2100000, guid: cf918b1d2a08825459c637f17eb11d95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wheel main material.001
+    second: {fileID: 2100000, guid: c17d67c3b4b979d43b2f2fe389cc8367, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
