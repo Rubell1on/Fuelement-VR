@@ -13,6 +13,8 @@ public class MatlabSocketAPI : MonoBehaviour
     public bool connected = false;
     public int reconnectTime = 5;
     public MatlabResponseEvent matlabResponseReceived;
+    public UnityEvent connectionEstablished;
+    public UnityEvent connectionFinished;
 
     TcpClient socket = new TcpClient();
     NetworkStream stream;
@@ -90,7 +92,11 @@ public class MatlabSocketAPI : MonoBehaviour
         {
             socket = new TcpClient();
             socket.Connect(host, port);
+
+            connected = socket.Connected;
+            connectionEstablished.Invoke();
             Debug.Log("Connected!");
+
             stream = socket.GetStream();
         }
         catch
@@ -98,8 +104,15 @@ public class MatlabSocketAPI : MonoBehaviour
             TryReconnect(reconnectTime);
         }
 
-        while (true)
+        while (connected)
         {
+            connected = socket.Connected;
+
+            if (connected == false)
+            {
+                connectionFinished.Invoke();
+            }
+
             try
             {
                 if (isWriting)
