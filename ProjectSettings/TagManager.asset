@@ -17,6 +17,7 @@ TagManager:
   - MapCamera
   - LoadingScreenControllers
   - LevelManager
+  - MeshCombinerIgnore
   layers:
   - Default
   - TransparentFX

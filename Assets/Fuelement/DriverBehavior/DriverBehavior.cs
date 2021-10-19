@@ -35,7 +35,7 @@ public abstract class DriverBehavior : MonoBehaviour
                 errorsCount++;
 
                 string type = this.GetType().Name;
-                ErrorOccurred.Invoke(new DriverBehaviorEventArgs(type, CurrentValue, diffValue));
+                ErrorOccurred.Invoke(new DriverBehaviorEventArgs(this, type, CurrentValue, diffValue));
 
                 active = false;
             }
@@ -59,12 +59,14 @@ public abstract class DriverBehavior : MonoBehaviour
     [Serializable]
     public class DriverBehaviorEventArgs
     {
+        [SerializeField] public object sender;
         [SerializeField] public string typeName;
         [SerializeField] public float currentValue;
         [SerializeField] public float diffValue;
 
-        public DriverBehaviorEventArgs(string typeName, float currentValue, float diffValue)
+        public DriverBehaviorEventArgs(object sender, string typeName, float currentValue, float diffValue)
         {
+            this.sender = sender;
             this.typeName = typeName;
             this.currentValue = currentValue;
             this.diffValue = diffValue;

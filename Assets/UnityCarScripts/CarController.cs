@@ -31,7 +31,7 @@ public abstract class CarController : MonoBehaviour {
 	[HideInInspector]
 	public bool accelKey;
 	
-	[HideInInspector]
+	//[HideInInspector]
 	public float steerInput;
 	[HideInInspector]
 	public float brakeInput;

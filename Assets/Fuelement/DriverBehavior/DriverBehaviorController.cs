@@ -7,27 +7,29 @@ using Newtonsoft.Json;
 
 public class DriverBehaviorController: MonoBehaviour
 {
+    public int userId = 0;
     const string folderPath = "Fuelement/DriverBehavior/Sessions";
 
     public string FolderPath
     {
         get
         {
-            return $"{Application.dataPath}/{folderPath}";
+            string currentDate = DateTime.Now.ToString("yy-MM-dd");
+            return $"{Application.dataPath}/{folderPath}/{userId}/{currentDate}";
         }
     }
     public string Path
     {
         get 
         {
-            string dateTime = DateTime.Now.ToString("yy-MM-dd HH-mm-ss");
+            string dateTime = DateTime.Now.ToString("HH-mm-ss");
             return $"{FolderPath}/{dateTime}.json"; 
         }
     }
 
     public List<DriverBehavior> driverBehaviors;
     public bool active = false;
-    Dictionary<string, List<DriverActivity>> driverActivities;
+    Dictionary<string, DriverActivity> driverActivities;
 
     void Start()
     {
@@ -45,16 +47,20 @@ public class DriverBehaviorController: MonoBehaviour
 
     void InitDictionary()
     {
-        driverActivities = new Dictionary<string, List<DriverActivity>>();
+        driverActivities = new Dictionary<string, DriverActivity>();
         driverBehaviors.ForEach(d =>
         {
             string className = d.GetType().Name;
-            driverActivities.Add(className, new List<DriverActivity>());
+            driverActivities.Add(className, new DriverActivity());
 
             d.ErrorOccurred.AddListener(args =>
             {
-                DriverActivity activity = new DriverActivity(args.currentValue, args.diffValue, new Vector3(0, 0, 0), Quaternion.identity);
-                driverActivities[className].Add(activity);
+                DriverActivity activity = driverActivities[className];
+
+                activity.missteps.Add(new DriverMisstep(args.currentValue, args.diffValue, new Vector3(0, 0, 0), Quaternion.identity));
+
+                DriverBehavior driverBehavior = (DriverBehavior)args.sender;
+                activity.errorsCount = driverBehavior.errorsCount;
             });
         });
     }
@@ -88,7 +94,21 @@ public class DriverBehaviorController: MonoBehaviour
         fs.Close();
     }
 
+    public class User
+    {
+        public int id;
+
+    }
+
     public class DriverActivity
+    {
+        public int errorsCount;
+        public List<DriverMisstep> missteps = new List<DriverMisstep>();
+
+        public DriverActivity() { }
+    }
+
+    public class DriverMisstep
     {
         public string time;
         public float currentValue;
@@ -96,7 +116,7 @@ public class DriverBehaviorController: MonoBehaviour
         public Vector3 carPosition;
         public Quaternion rotation;
 
-        public DriverActivity(float currentValue, float diffValue, Vector3 carPosition, Quaternion rotation)
+        public DriverMisstep(float currentValue, float diffValue, Vector3 carPosition, Quaternion rotation)
         {
             this.time = DateTime.Now.ToString("hh:mm:ss");
             this.currentValue = currentValue;

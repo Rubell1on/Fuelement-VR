@@ -13,7 +13,7 @@ maxTorque=312
 maxTorqueRPM=3000
 minRPM=800
 maxRPM=6500
-revLimiter=False
+revLimiter=True
 revLimiterTime=0,15
 engineInertia=0,35
 engineFrictionFactor=0,25
@@ -131,7 +131,7 @@ area=1
 controller=axis
 
 [axisController]
-smoothInput=True
+smoothInput=False
 throttleTime=0,1
 throttleReleaseTime=0,1
 maxThrottleInReverse=1

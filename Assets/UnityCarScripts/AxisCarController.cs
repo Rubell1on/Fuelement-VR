@@ -12,15 +12,15 @@ public class AxisCarController : CarController {
 		
 	public string throttleAxis="Throttle";
 	public string brakeAxis="Brake";
-	public string steerAxis="Horizontal";
+	public string steerAxis="Horizontal1";
 	public string handbrakeAxis="Handbrake";
 	public string clutchAxis="Clutch";
-	public string shiftUpButton="ShiftUp";
-	public string shiftDownButton="ShiftDown";
-	public string startEngineButton="StartEngine";
-		
-		
-	protected override void GetInput(out float throttleInput, 
+    public string shiftUpButton = "ShiftUp";
+    public string shiftDownButton = "ShiftDown";
+    public string startEngineButton = "StartEngine";
+
+
+    protected override void GetInput(out float throttleInput, 
 									out float brakeInput, 
 									out float steerInput, 
 									out float handbrakeInput,
@@ -35,18 +35,30 @@ public class AxisCarController : CarController {
 		handbrakeInput=Input.GetAxisRaw (handbrakeAxis);
 		clutchInput =Input.GetAxisRaw (clutchAxis);
 		startEngineInput=Input.GetButton (startEngineButton);
-		
-		
+		//startEngineInput = Input.GetKey(KeyCode.Joystick1Button3);
+
+
 		// Gear shift
 		targetGear = drivetrain.gear;
-		if(Input.GetButtonDown(shiftUpButton)){
-			++targetGear;
-		}
-		if(Input.GetButtonDown(shiftDownButton)){
-			--targetGear;
-		}
+        if (Input.GetButtonDown(shiftUpButton))
+        {
+            ++targetGear;
+        }
+        if (Input.GetButtonDown(shiftDownButton))
+        {
+            --targetGear;
+        }
 
-		if (drivetrain.shifter==true){
+        //if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        //{
+        //    ++targetGear;
+        //}
+        //if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        //{
+        //    --targetGear;
+        //}
+
+        if (drivetrain.shifter==true){
 			if(Input.GetButton("reverse")){
 				targetGear=0;
 			}

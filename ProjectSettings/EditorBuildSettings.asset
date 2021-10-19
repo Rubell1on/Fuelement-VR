@@ -20,5 +20,7 @@ EditorBuildSettings:
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: f2182175f28a840439388b6380e636af,
       type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: da23b4bdc1d2c404f9508e86ea582aaa,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7069f960644c8c744a4ca4adde546715,
       type: 2}
