@@ -5,20 +5,22 @@ using UnityEngine.Events;
 public class CarSelectorController : MonoBehaviour
 {
     public GameObject cardTemplate;
-    public List<CarData> elements;
-    public CarData currentSelection;
-
-    public SelectorMenuEvent onSelectionChange;
+    public GameModeController gameModeController;
 
     GameObject cardInstance;
+    CarsController carsController;
 
     void OnEnable()
     {
-        if (elements.Count > 0)
+        carsController = CarsController.GetInstance();
+        carsController.onSelectionChange.AddListener(SetCardData);
+        carsController.onSelectionChange.AddListener(gameModeController.ChangeState);
+
+        if (carsController.cars.Count > 0)
         {
             cardInstance = Instantiate(cardTemplate, gameObject.transform);
             cardInstance.transform.SetAsFirstSibling();
-            setCardData(elements[0]);
+            SetCardData(carsController.cars[0]);
         }
         else
         {
@@ -28,10 +30,13 @@ public class CarSelectorController : MonoBehaviour
 
     void OnDisable()
     {
+        carsController.onSelectionChange.RemoveListener(SetCardData);
+        carsController.onSelectionChange.RemoveListener(gameModeController.ChangeState);
+
         Destroy(cardInstance);
     }
 
-    public void setCardData(CarData data)
+    public void SetCardData(CarData data)
     {
         if (data != null)
         {
@@ -39,22 +44,4 @@ public class CarSelectorController : MonoBehaviour
             card.setCardData(data);
         }
     }
-
-    public void SetSelection(CarData newSelection)
-    {
-        if (newSelection != null)
-        {
-            currentSelection = newSelection;
-            onSelectionChange.Invoke(currentSelection);
-        }
-    }
-
-    public void RemoveSelection()
-    {
-        currentSelection = null;
-        onSelectionChange.Invoke(null);
-    }
-
-    [System.Serializable]
-    public class SelectorMenuEvent : UnityEvent<CarData> { };
 }

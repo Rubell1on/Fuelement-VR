@@ -29,7 +29,8 @@ public class DriverBehaviorController: MonoBehaviour
 
     public List<DriverBehavior> driverBehaviors;
     public bool active = false;
-    Dictionary<string, DriverActivity> driverActivities;
+    [HideInInspector]
+    public Dictionary<string, DriverActivity> driverActivities;
 
     void Start()
     {
@@ -51,15 +52,35 @@ public class DriverBehaviorController: MonoBehaviour
         driverBehaviors.ForEach(d =>
         {
             string className = d.GetType().Name;
-            driverActivities.Add(className, new DriverActivity());
+            DriverActivity activity = new DriverActivity();
+            activity.behaviorName = d.behaviorName;
+
+            driverActivities.Add(className, activity);
+
+            d.maxValueChanged.AddListener(args =>
+            {
+                DriverBehavior driverBehavior = (DriverBehavior)args.sender;
+                activity.maxValue = driverBehavior.maxValue;
+            });
+
+            d.minValueChanged.AddListener(args =>
+            {
+                DriverBehavior driverBehavior = (DriverBehavior)args.sender;
+                activity.minValue = driverBehavior.minValue;
+            });
+
+            d.avgValueChanged.AddListener(args =>
+            {
+                DriverBehavior driverBehavior = (DriverBehavior)args.sender;
+                activity.avgValue = driverBehavior.avg;
+            });
 
             d.ErrorOccurred.AddListener(args =>
             {
-                DriverActivity activity = driverActivities[className];
-
-                activity.missteps.Add(new DriverMisstep(args.currentValue, args.diffValue, new Vector3(0, 0, 0), Quaternion.identity));
-
                 DriverBehavior driverBehavior = (DriverBehavior)args.sender;
+
+                activity.missteps.Add(new DriverMisstep(driverBehavior.CurrentValue, driverBehavior.diffValue, new Vector3(0, 0, 0), Quaternion.identity));
+
                 activity.errorsCount = driverBehavior.errorsCount;
             });
         });
@@ -102,10 +123,12 @@ public class DriverBehaviorController: MonoBehaviour
 
     public class DriverActivity
     {
+        public string behaviorName;
+        public float minValue;
+        public float maxValue;
+        public float avgValue;
         public int errorsCount;
         public List<DriverMisstep> missteps = new List<DriverMisstep>();
-
-        public DriverActivity() { }
     }
 
     public class DriverMisstep

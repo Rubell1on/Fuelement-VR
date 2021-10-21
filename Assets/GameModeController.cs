@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class GameModeController : MonoBehaviour
 {
     public SelectorController selectorController;
-    public CarSelectorController carSelectorController;
 
     public bool ready = false;
 
@@ -13,7 +12,7 @@ public class GameModeController : MonoBehaviour
 
     public void ChangeState(dynamic dynamic)
     {
-        if (selectorController.currentSelection != null && carSelectorController.currentSelection != null)
+        if (selectorController.currentSelection != null && CarsController.GetInstance().currentSelection != null)
         {
             ready = true;
         } else
@@ -28,7 +27,7 @@ public class GameModeController : MonoBehaviour
     {
         if (ready)
         {
-            StartCoroutine(LevelManager.Load(selectorController.currentSelection, carSelectorController.currentSelection));
+            StartCoroutine(LevelManager.Load(selectorController.currentSelection, CarsController.GetInstance().currentSelection));
         } else
         {
             throw new NullReferenceException("Level or Car data is not set!");

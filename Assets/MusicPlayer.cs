@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace MusicPlayer {
     [RequireComponent(typeof(AudioSource))]
-    public class MusicPlayer : MonoBehaviour
+    public class MusicPlayer : Singleton<MusicPlayer>
     {
         public List<MusicTrack> tracks;
         [Space(10)]
@@ -22,11 +22,6 @@ namespace MusicPlayer {
         public MusicPlayerEvent onTrackChanged;
 
         Coroutine timer;
-
-        void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
 
         void Start()
         {

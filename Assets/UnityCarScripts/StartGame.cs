@@ -11,7 +11,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class StartGame : MonoBehaviour {
+public class StartGame : MonoBehaviour 
+{
 	public CarCamerasController carCamerasController;
 	public CarCamerasController mapCameraController;
 	GameObject StartTimer;

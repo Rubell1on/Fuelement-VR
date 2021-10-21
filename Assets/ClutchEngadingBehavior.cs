@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ClutchEngadingBehavior : DriverBehavior
 {
+    public void Start()
+    {
+        behaviorName = "Включение передачи";
+    }
+
     public override void FixedUpdate()
     {
         CurrentValue = Input.GetAxis("Clutch");
@@ -22,7 +27,7 @@ public class ClutchEngadingBehavior : DriverBehavior
                 errorsCount++;
 
                 string type = this.GetType().Name;
-                ErrorOccurred.Invoke(new DriverBehaviorEventArgs(this, type, CurrentValue, 0));
+                ErrorOccurred.Invoke(new DriverBehaviorEventArgs(this));
             }
         }
     }

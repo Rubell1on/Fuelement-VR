@@ -241,7 +241,7 @@ public enum LeanProp
 * @class LeanTween
 */
 
-public class LeanTween : MonoBehaviour {
+public class LeanTween : Singleton<LeanTween> {
 
     public static bool throwErrors = true;
     public static float tau = Mathf.PI*2.0f; 

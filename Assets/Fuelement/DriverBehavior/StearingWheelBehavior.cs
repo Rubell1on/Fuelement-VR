@@ -2,6 +2,11 @@
 
 public class StearingWheelBehavior : DriverBehavior
 {
+    public void Start()
+    {
+        behaviorName = "Поворот рулевого колеса";    
+    }
+
     public AxisCarController controller;
 
     int wheelAxisMaxAngle = 540;

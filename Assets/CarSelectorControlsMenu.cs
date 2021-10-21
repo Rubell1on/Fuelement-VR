@@ -5,14 +5,16 @@ using UnityEngine.Events;
 
 public class CarSelectorControlsMenu : MonoBehaviour
 {
-    public CarSelectorController selector;
     public GameObject selectorCardTemplate;
     public Transform parent;
 
     List<GameObject> selectorCards = new List<GameObject>();
 
+    CarsController carsController;
+
     private void OnEnable()
     {
+        carsController = CarsController.GetInstance();
         InitCards();
     }
 
@@ -23,7 +25,7 @@ public class CarSelectorControlsMenu : MonoBehaviour
 
     void InitCards()
     {
-        selector.elements.ForEach(l =>
+        carsController.cars.ForEach(l =>
         {
             GameObject instance = Instantiate(selectorCardTemplate, parent);
             CarSelectorCard card = instance.GetComponent<CarSelectorCard>();
@@ -32,12 +34,12 @@ public class CarSelectorControlsMenu : MonoBehaviour
 
             cb.onPointerEnter.AddListener(() => {
                 CarData cl = GetCar(instance);
-                selector.onSelectionChange.Invoke(cl);
+                carsController.onSelectionChange.Invoke(cl);
             });
 
             cb.onClick.AddListener(() =>
             {
-                selector.SetSelection(l);
+                carsController.SelectCar(l);
             });
             selectorCards.Add(instance);
         });
@@ -62,6 +64,6 @@ public class CarSelectorControlsMenu : MonoBehaviour
     CarData GetCar(GameObject card)
     {
         int id = GetCardId(card);
-        return selector.elements[id];
+        return carsController.cars[id];
     }
 }

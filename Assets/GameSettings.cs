@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using Newtonsoft.Json;
 
-public class GameSettings : MonoBehaviour
+public class GameSettings : Singleton<GameSettings>
 {
     const string folderPath = "Fuelement/Settings";
     public string Path {
