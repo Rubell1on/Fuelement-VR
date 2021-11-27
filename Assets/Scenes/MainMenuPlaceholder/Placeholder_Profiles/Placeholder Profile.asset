@@ -63,7 +63,7 @@ MonoBehaviour:
     overrideState: 1
     value: 52
   kernelSize:
-    overrideState: 0
+    overrideState: 1
     value: 1
 --- !u!114 &-1997221823061060984
 MonoBehaviour:
