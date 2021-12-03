@@ -41,7 +41,7 @@ public abstract class CarController : MonoBehaviour {
 	public float handbrakeInput;
 	[HideInInspector]
 	public float clutchInput;
-	[HideInInspector]
+	//[HideInInspector]
 	public bool startEngineInput;
 	
 	// Cached rigidbody

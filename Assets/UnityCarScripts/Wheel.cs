@@ -261,7 +261,7 @@ public class Wheel : MonoBehaviour {
 	int lastSkid = -1;
 	
 	// cached values
-	Rigidbody body;
+	public Rigidbody body;
 	Transform trs;
 	Transform modelTransform;
 	Transform caliperModelTransform;
@@ -543,15 +543,17 @@ public class Wheel : MonoBehaviour {
         //while (trs != null && trs.gameObject.GetComponent<Rigidbody>() == null) trs = trs.parent;
         //if (trs != null) body = trs.gameObject.GetComponent<Rigidbody>();
 
-        Rigidbody rb;
-        do
+		if (body == null)
         {
-            rb = trs.GetComponent<Rigidbody>();
-            trs = trs.parent;
-        }
-        while (trs != null && rb == null);
-        if (trs != null) body = rb;
-
+			Rigidbody rb;
+			do
+			{
+				rb = trs.GetComponent<Rigidbody>();
+				trs = trs.parent;
+			}
+			while (trs != null && rb == null);
+			if (trs != null) body = rb;
+		}
 
         //if (!trs.TryGetComponent<Rigidbody>(out body)) trs = trs.parent;
 

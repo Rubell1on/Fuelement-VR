@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    bool doNotDestroyOnLoad = true;
     private static T _instance;
 
     public void Awake()
@@ -11,7 +12,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (_instance == null)
         {
             _instance = GetComponent<T>();
-            DontDestroyOnLoad(this);
+
+            if (doNotDestroyOnLoad) DontDestroyOnLoad(this);
+
             return;
         }
 
@@ -22,4 +25,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         return _instance;
     } 
+
+    public void SetDoNotDestroyOnLoad(bool value)
+    {
+        this.doNotDestroyOnLoad = value;
+    }
 }

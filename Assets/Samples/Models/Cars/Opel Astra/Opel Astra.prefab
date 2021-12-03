@@ -3529,6 +3529,7 @@ MonoBehaviour:
   normalForce: 2707.6213
   camber: 0
   deltaCamber: 0
+  body: {fileID: 5306769522074994068}
   axleWheelsLength: 2
   axlesNumber: 2
 --- !u!1 &5306769522080196248
@@ -3852,7 +3853,7 @@ MonoBehaviour:
   maxRPM: 6500
   canStall: 1
   startEngine: 0
-  revLimiter: 0
+  revLimiter: 1
   revLimiterTime: 0.15
   revLimiterTriggered: 0
   revLimiterReleased: 0
@@ -4107,7 +4108,7 @@ MonoBehaviour:
   handbrakeInput: 0
   clutchInput: 0
   startEngineInput: 0
-  smoothInput: 1
+  smoothInput: 0
   throttleTime: 0.1
   throttleReleaseTime: 0.1
   maxThrottleInReverse: 1
@@ -4611,6 +4612,7 @@ MonoBehaviour:
   normalForce: 2322.2761
   camber: -0
   deltaCamber: -0
+  body: {fileID: 5306769522074994068}
   axleWheelsLength: 2
   axlesNumber: 2
 --- !u!1 &5306769522080196332
@@ -4774,6 +4776,7 @@ MonoBehaviour:
   normalForce: 2303.978
   camber: -0
   deltaCamber: -0
+  body: {fileID: 5306769522074994068}
   axleWheelsLength: 2
   axlesNumber: 2
 --- !u!1 &5306769522080196334
@@ -4937,6 +4940,7 @@ MonoBehaviour:
   normalForce: 2442.619
   camber: 0
   deltaCamber: 0
+  body: {fileID: 5306769522074994068}
   axleWheelsLength: 2
   axlesNumber: 2
 --- !u!1 &5306769522080196336

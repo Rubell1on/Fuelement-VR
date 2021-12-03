@@ -70,6 +70,7 @@ public class Drivetrain : MonoBehaviour {
 	public bool canStall = false;
 	[HideInInspector]
 	public bool startEngine=false;
+	public bool engineStarted = false;
 	
 	public bool revLimiter=false;
 	public float revLimiterTime = 0.1f; //50ms
@@ -308,7 +309,7 @@ public class Drivetrain : MonoBehaviour {
 		
 		CalcIdleThrottle();
 		DisengageClutch();
-		StartEngine();
+		//StartEngine();
 	}
 	
 	public float CalcRPMAtSpeedInLastGear(float speed){
@@ -742,6 +743,8 @@ public class Drivetrain : MonoBehaviour {
 			revLimiterTriggered=false;
 			revLimiterReleased=false;
 		}
+
+		engineStarted = rpm < minRPM ? false : true;
 	}
 	
 	void DoGearShifting(){

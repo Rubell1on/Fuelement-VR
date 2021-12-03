@@ -13,8 +13,8 @@ using System.Linq;
 
 public class StartGame : MonoBehaviour 
 {
-	public CarCamerasController carCamerasController;
-	public CarCamerasController mapCameraController;
+	public CarCamerasController_legacy carCamerasController;
+	public CarCamerasController_legacy mapCameraController;
 	GameObject StartTimer;
 	SettingsMenu settingsMenu;
 	public List<GameObject> cars;
@@ -24,7 +24,7 @@ public class StartGame : MonoBehaviour
 	public float fixedTimeStep=0.02f;
 	int index=0;
 	int lastIndex;
-	CarCameras carCameras;
+	CustomCamera carCameras;
 	Light mlight;
 	DashBoard dashBoard;
 	
@@ -36,13 +36,13 @@ public class StartGame : MonoBehaviour
 	//}
 	
 	void Start(){
-		if (carCamerasController == null) carCamerasController = Camera.main.GetComponent<CarCamerasController>();
+		if (carCamerasController == null) carCamerasController = Camera.main.GetComponent<CarCamerasController_legacy>();
 		settingsMenu = GetComponent<SettingsMenu>();
-        carCameras = Camera.main.GetComponent<CarCameras>();
+        carCameras = Camera.main.GetComponent<CustomCamera>();
         if (mapCameraController == null)
         {
-            if (GameObject.FindWithTag("MapCamera")) mapCameraController = GameObject.FindWithTag("MapCamera").GetComponent<CarCamerasController>();
-            else if (GameObject.Find("MapCamera")) mapCameraController = GameObject.Find("MapCamera").GetComponent<CarCamerasController>();
+            if (GameObject.FindWithTag("MapCamera")) mapCameraController = GameObject.FindWithTag("MapCamera").GetComponent<CarCamerasController_legacy>();
+            else if (GameObject.Find("MapCamera")) mapCameraController = GameObject.Find("MapCamera").GetComponent<CarCamerasController_legacy>();
         }
 
         object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
