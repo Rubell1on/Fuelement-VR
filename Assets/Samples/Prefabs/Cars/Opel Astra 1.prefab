@@ -1600,8 +1600,9 @@ MonoBehaviour:
   source: {fileID: 1761993906637221878}
   targetAngle: {x: 0, y: 0, z: 30}
   speedAmplifier: 1.5
-  axisName: 
   checkingAxis: 0
+  axisName: 
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -2879,8 +2880,9 @@ MonoBehaviour:
   source: {fileID: 4365228658163808304}
   targetAngle: {x: 0, y: 0, z: 30}
   speedAmplifier: 1.5
-  axisName: 
   checkingAxis: 0
+  axisName: 
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -3034,8 +3036,9 @@ MonoBehaviour:
   source: {fileID: 6912597768509794570}
   targetAngle: {x: 0, y: 0, z: 0}
   speedAmplifier: 1.5
-  axisName: StartEngine
   checkingAxis: 1
+  axisName: StartEngine
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -3051,8 +3054,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -6350,8 +6353,9 @@ MonoBehaviour:
   source: {fileID: 6373519004658739788}
   targetAngle: {x: 0, y: 0, z: 30}
   speedAmplifier: 1.5
-  axisName: 
   checkingAxis: 0
+  axisName: 
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -8142,8 +8146,9 @@ MonoBehaviour:
   source: {fileID: 2263059957402917414}
   targetAngle: {x: 0, y: -15, z: 0}
   speedAmplifier: 1
-  axisName: Handbrake
   checkingAxis: 1
+  axisName: Handbrake
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:

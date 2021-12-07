@@ -10,7 +10,13 @@ public class DynamicCamera : MonoBehaviour
     public Transform[] cameraPlaces;
     public int currentPlaceId = 0;
     public float speedAmplifier = 1;
+
+    [Space(10f)]
+    [Header("Animation settings")]
+    public bool useCurve = true;
     public AnimationCurve animationCurve = new AnimationCurve(new Keyframe[] { new Keyframe(0, 0), new Keyframe(1, 1) });
+    [Space(10f)]
+    [Header("Events")]
     public UnityEvent movementFinished;
 
     [ContextMenu("Next")]
@@ -42,7 +48,8 @@ public class DynamicCamera : MonoBehaviour
 
         while (lerpTime < 1 * 0.99)
         {
-            float value = animationCurve.Evaluate(lerpTime);
+            float value = lerpTime;
+            value = animationCurve.Evaluate(lerpTime);
             currentPosition = Vector3.Lerp(currentPosition, target.position, value);
             currentRotation = Quaternion.Lerp(currentRotation, target.rotation, value);
 

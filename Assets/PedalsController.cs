@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PedalsController : MonoBehaviour
 {
-    public Rotatator clutch;
-    public Rotatator brake;
-    public Rotatator throttle;
+    public Rotator clutch;
+    public Rotator brake;
+    public Rotator throttle;
 
     void Update()
     {
@@ -26,7 +26,7 @@ public class PedalsController : MonoBehaviour
         }
     }
 
-    void PressPedal(string inputAxis, Rotatator rotator)
+    void PressPedal(string inputAxis, Rotator rotator)
     {
         float value = InputExtension.GetAxis(inputAxis);
         rotator.Rotate(value, rotator.targetAngle);

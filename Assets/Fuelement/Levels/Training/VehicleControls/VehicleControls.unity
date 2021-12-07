@@ -258,6 +258,7 @@ MonoBehaviour:
   - {fileID: 913634587}
   currentPlaceId: 0
   speedAmplifier: 0.15
+  useCurve: 1
   animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1770,6 +1771,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 33
       objectReference: {fileID: 0}
+    - target: {fileID: 5685401482990478024, guid: 0d671c2665141d043a030a81fd40670a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5685401482990478026, guid: 0d671c2665141d043a030a81fd40670a,
         type: 3}
       propertyPath: m_Enabled
@@ -2045,50 +2051,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 27
       objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[1].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[1].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682617682841258415, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: animationCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6835408956469991100, guid: 0d671c2665141d043a030a81fd40670a,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6912597768509794570, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919490757384794007, guid: 0d671c2665141d043a030a81fd40670a,
         type: 3}
@@ -2269,11 +2235,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024339423408015361, guid: 0d671c2665141d043a030a81fd40670a,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 9094805501335158317, guid: 0d671c2665141d043a030a81fd40670a,
         type: 3}
