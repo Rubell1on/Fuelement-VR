@@ -38,7 +38,7 @@ public class TR_Pedals : Phase
         if (!breakPedal)
         {
             float breakValue = Input.GetAxis("Brake");
-            float kbBreakValue = Input.GetAxis("Keyboard_Break");
+            float kbBreakValue = Input.GetAxis("Keyboard_Brake");
 
             if (breakValue == 1 || kbBreakValue == 1)
             {

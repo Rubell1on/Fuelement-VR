@@ -10,10 +10,10 @@ public class Controllers : MonoBehaviour
     {
         { "Keyboard_Horizontal", 0f },
         { "Keyboard_Throttle", 0f },
-        { "Keyboard_Break", 0f },
+        { "Keyboard_Brake", 0f },
         { "Keyboard_Clutch", 0f },
         { "Keyboard_StartEngine", 0f },
-        { "Keyboard_Handbreak", 0f },
+        { "Keyboard_Handbrake", 0f },
         { "Keyboard_ShiftUp", 0f },
         { "Keyboard_ShiftDown", 0f }
     };

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,8 +31,14 @@ public class LevelManager : Singleton<LevelManager>
         LoadingScreenController lsc = contls.GetComponent<LoadingScreenController>();
         lsc.SetLevelName(level.name);
 
-        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(level.id.handle, LoadSceneMode.Additive);
+        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(level.sceneBuiltInId, LoadSceneMode.Additive);
         targetLevel.allowSceneActivation = false;
+
+        targetLevel.completed += o =>
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene())
+                .completed += OnMainMenuUnloaded;
+        };
 
         while (!targetLevel.isDone)
         {
@@ -48,23 +56,30 @@ public class LevelManager : Singleton<LevelManager>
             yield return null;
         }
 
-        targetLevel.completed += o =>
-        {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene())
-                .completed += (co) => {
-                    SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen)
-                        .completed += (lo) => {
-                            GameObject collection = GameObject.Find("CarCollection");
-                            StartGame sg = collection.GetComponent<StartGame>();
-
-                            sg.AddCar(car.car);
-                            sg.SelectNextCar(true);
-                        };
-                };
-            
-        };
-
         yield return null;
+
+        void OnMainMenuUnloaded(AsyncOperation asyncOperation)
+        {
+            Scene placeholder = SceneManager.GetAllScenes().ToList().Find(s => s.name.ToLower().Contains("placeholder"));
+
+            if (placeholder.name?.Length > 0)
+            {
+                SceneManager.UnloadSceneAsync(placeholder.buildIndex);
+            }
+
+            SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen)
+                .completed += OnLoadingScreenUnloaded;  
+        }
+
+        void OnLoadingScreenUnloaded(AsyncOperation obj)
+        {
+            LevelSettings levelSetup = LevelSettings.GetInstance();
+
+            if (levelSetup)
+            {
+                levelSetup.SetCar(car);
+            }
+        }
     }
 
     public static IEnumerator Load(int id)

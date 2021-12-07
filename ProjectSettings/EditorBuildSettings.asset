@@ -15,11 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuPlaceholder/Placeholder_1.unity
     guid: 59017fa92b5fcb54690aa1ec40cc8c09
   - enabled: 1
-    path: Assets/Samples/Scenes/Level1.unity
-    guid: d7bd87c71fa985541bf95df3a4d785cd
-  - enabled: 1
-    path: Assets/Samples/Scenes/Pixelactive City.unity
-    guid: 7b0ffc8427ee8e6489d5cd700de411f1
+    path: Assets/Fuelement/Levels/Training/VehicleControls/VehicleControls.unity
+    guid: 46d3f4b257500b242b59632ebfe2c797
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: f2182175f28a840439388b6380e636af,
       type: 2}

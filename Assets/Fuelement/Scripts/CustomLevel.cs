@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Levels/CustomLevel")]
+
+[Serializable]
 public class CustomLevel : ASimpleData
 {
-    public Scene id;
+    [SerializeField]
+    public int sceneBuiltInId;
 }

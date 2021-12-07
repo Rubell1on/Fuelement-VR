@@ -18,6 +18,7 @@ public class CarScriptsController : MonoBehaviour
     public DashBoard dashBoard;
     public FuelTank fuelTank;
     public List<Wing> wings;
+    public CamerasController camerasController;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class CarScriptsController : MonoBehaviour
         if (arcader == null) arcader = GetComponent<Arcader>();
         if (setup == null) setup = GetComponent<Setup>();
         if (bodyRb == null) bodyRb = GetComponent<Rigidbody>();
+        if (camerasController == null) camerasController = GetComponent<CamerasController>();
     }
 
     public void EnableCardMode()

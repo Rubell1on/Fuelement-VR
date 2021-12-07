@@ -15,7 +15,7 @@ MonoBehaviour:
   carFullName: Opel Astra H
   releaseYear: 2008
   producerLogo: {fileID: 2800000, guid: 876d3ba32fa23254ebaaefba7a4d8d7f, type: 3}
-  car: {fileID: 5306769522080196262, guid: 22b67d781573a004da39f475b07b71f1, type: 3}
+  car: {fileID: 5685401482997536624, guid: 0d671c2665141d043a030a81fd40670a, type: 3}
   background:
     serializedVersion: 2
     rgba: 4291480266

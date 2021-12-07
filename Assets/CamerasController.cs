@@ -16,7 +16,7 @@ public class CamerasController : MonoBehaviour
 
 	void Start()
 	{
-		SetCamera(0);
+		if (customCamera) SetCamera(0);
 	}
 
 	public void SetCamera(int id)
@@ -45,7 +45,7 @@ public class CamerasController : MonoBehaviour
 	void Update()
 	{
 		//Camera control
-		if (customCamera.mycamera != CustomCamera.CameraType.Map)
+		if (customCamera?.mycamera != CustomCamera.CameraType.Map)
 		{
 			if (Input.GetKeyDown(KeyCode.C))
 			{

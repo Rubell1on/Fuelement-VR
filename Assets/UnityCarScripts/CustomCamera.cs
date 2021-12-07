@@ -50,7 +50,7 @@ public class CustomCamera : MonoBehaviour {
 	Vector3 velocity;
 	Vector3 accel;
 	float centrifugalAccel;
-	CarDynamics cardynamics;
+	CarDynamics carDynamics = null;
 		
 	[HideInInspector]
 	public Transform myTransform;	
@@ -62,7 +62,12 @@ public class CustomCamera : MonoBehaviour {
 	void Start(){
 		myTransform=transform;
 		mtarget=target;
-		if(mtarget) cardynamics = mtarget.GetComponent<CarDynamics>();
+		if (mtarget)
+		{
+			CarDynamics carDynamics = mtarget.GetComponent<CarDynamics>();
+
+			if (carDynamics) this.carDynamics = carDynamics;
+		}
 	}
 	
 	void LateUpdate () {
@@ -147,7 +152,7 @@ public class CustomCamera : MonoBehaviour {
 			velocity=mtarget.InverseTransformDirection(mtarget.GetComponent<Rigidbody>().velocity);
 			deltaVelocity=velocity - oldVelocity;
 			
-			if (cardynamics!=null) centrifugalAccel=cardynamics.GetCentrifugalAccel();
+			if (carDynamics != null) centrifugalAccel=carDynamics.GetCentrifugalAccel();
 			accel=deltaVelocity/Time.deltaTime + centrifugalAccel*Vector3.right;
 			//if (Mathf.Abs(accel.x)>100) accel.x=100*Mathf.Sign(accel.x);
 			//if (Mathf.Abs(accel.y)>100) accel.y=100*Mathf.Sign(accel.y);
