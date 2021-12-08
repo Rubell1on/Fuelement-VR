@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScenarioController : Singleton<ScenarioController>
 {
@@ -9,14 +10,26 @@ public class ScenarioController : Singleton<ScenarioController>
     public int currentPhaseId = 0;
 
     public Phase currentPhase { get { return phases[currentPhaseId]; } }
-    // Start is called before the first frame update
+    [Space(10)]
+    [Header("Events")]
+    public UnityEvent scenarioStarted;
 
     private new void Awake()
     {
         SetDoNotDestroyOnLoad(false);
         base.Awake();
         DisableAllPhases();
-        StartPhase(currentPhaseId);
+    }
+
+    private void Start()
+    {
+        StartScenario();
+    }
+
+    public void StartScenario()
+    {
+        StartPhase(0);
+        scenarioStarted?.Invoke();
     }
 
     public void StartPhase(int phaseId)

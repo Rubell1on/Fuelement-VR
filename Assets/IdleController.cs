@@ -2,10 +2,10 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class IdleController : MonoBehaviour
 {
-    public DynamicCameraController carCameraController;
     public DynamicCameraController environmentCameraController;
     public FadeController fadeController;
     public List<int> fadeOnIds;
@@ -16,9 +16,12 @@ public class IdleController : MonoBehaviour
     public bool canExit = true;
     public float timeBeforeIdle = 10f;
     [Space(5)]
-    public bool autoIdleEnabled = false;
+    public bool idleEnabled = false;
+    [Space(10f)]
+    [Header("Events")]
+    public UnityEvent idleStoped;
 
-    Coroutine idle = null;
+    Coroutine idleTimer = null;
 
     List<string> inputs = new List<string>()
     {
@@ -42,19 +45,24 @@ public class IdleController : MonoBehaviour
 
     private void Start()
     {
-       // SetIdleTimer(timeBeforeIdle);
+        if (autoIdle && !idleEnabled)
+            SetIdleTimer(timeBeforeIdle);
     }
 
     private void OnDestroy()
     {
+        idleEnabled = false;
+        ClearIdleTimer();
         StopIdle();
+        environmentCameraController.StopAnimation();
     }
 
     [ContextMenu("Start idle")]
     public void StartIdle()
     {
-        StopIdle();
-        autoIdleEnabled = true;
+        ClearIdleTimer();
+        RemoveListeners();
+        idleEnabled = true;
         environmentCameraController.movementFinished.AddListener(OnMovementFinished);
         fadeController.fadedIn.AddListener(OnStartFidedIn);
         fadeController.FadeIn();
@@ -63,19 +71,25 @@ public class IdleController : MonoBehaviour
     [ContextMenu("Stop idle")]
     public void StopIdle()
     {
-        autoIdleEnabled = false;
+        idleEnabled = false;
         ClearIdleTimer();
+        RemoveListeners();
+        environmentCameraController.StopAnimation();
+
+        if (autoIdle && !idleEnabled)
+        {
+            SetIdleTimer(timeBeforeIdle);
+        }
+
+        idleStoped?.Invoke();
+    }
+
+    void RemoveListeners()
+    {
         fadeController.fadedOut.RemoveListener(OnFadedOut);
         fadeController.fadedIn.RemoveListener(OnFadedIn);
         fadeController.fadedIn.RemoveListener(OnStartFidedIn);
         environmentCameraController.movementFinished.RemoveListener(OnMovementFinished);
-        environmentCameraController.StopAnimation();
-
-        //if (autoIdle && !autoIdleEnabled)
-        //{
-        //    SetIdleTimer(timeBeforeIdle);
-        //    autoIdle = false;
-        //}
     }
 
     void OnStartFidedIn()
@@ -111,10 +125,12 @@ public class IdleController : MonoBehaviour
         fadeController.fadedOut.RemoveListener(OnFadedOut);
     }
 
-    void SetIdleTimer(float delay)
+    public void SetIdleTimer(float delay)
     {
-        if (idle != null) StopCoroutine(idle);
-        idle = StartCoroutine(_SetIdleTimer(delay));
+        if (!idleEnabled && idleTimer == null)
+        {
+            idleTimer = StartCoroutine(_SetIdleTimer(delay));
+        }
     }
 
     IEnumerator _SetIdleTimer(float delay)
@@ -123,21 +139,31 @@ public class IdleController : MonoBehaviour
         StartIdle();
     }
 
-    void ClearIdleTimer()
+    public void ClearIdleTimer()
     {
-        if (idle != null) StopCoroutine(idle);
-        autoIdle = true;
+        if (idleTimer != null)
+        {
+            StopCoroutine(idleTimer);
+            idleTimer = null;
+        }
     }
 
     private void Update()
     {
+        List<float> values = inputs.Select(i => Input.GetAxis(i)).ToList().Where(i => i != 0).ToList();
+        if (values.Count == 0)
+            return;
+
+        if (!idleEnabled && idleTimer != null)
+        {
+            ClearIdleTimer();
+            SetIdleTimer(timeBeforeIdle);
+            return;
+        }
+
         if (canExit)
         {
-            List<float> values = inputs.Select(i => Input.GetAxis(i)).ToList().Where(i => i != 0).ToList();
-            if (values.Count > 0)
-            {
-                StopIdle();
-            }
+            StopIdle();
         }
     }
 }

@@ -78,6 +78,11 @@ public class DynamicCameraController : MonoBehaviour
         }
     }
 
+    public void MoveToCurrent()
+    {
+        MoveTo(currentPlaceId);
+    }
+
     public void MoveToInstant(int id = 0)
     {
         if (sourceCamera != null && id <= cameraPlaces?.Length - 1)
@@ -89,6 +94,11 @@ public class DynamicCameraController : MonoBehaviour
 
             movementFinished?.Invoke(currentPlaceId);
         }
+    }
+
+    public void MoveToCurrentInstant()
+    {
+        MoveToInstant(currentPlaceId);
     }
 
     public void StopAnimation()
