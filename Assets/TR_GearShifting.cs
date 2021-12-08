@@ -8,11 +8,14 @@ public class TR_GearShifting : Phase
     public bool shiftDown = false;
 
     bool clutchDisengaged = false;
+    TasksController tasksController;
+    TaskElement task;
 
     public override void StartPhase()
     {
         base.StartPhase();
-        Debug.Log("Переключите передачи КПП вверх и вниз клавишами 'Shift' и 'Ctrl' соответственно");
+        tasksController = TasksController.GetInstance();
+        task = tasksController?.Add(info);
     }
 
     public override void ResetValues()
@@ -41,7 +44,8 @@ public class TR_GearShifting : Phase
 
         if (shiftUp && shiftDown)
         {
-            finished?.Invoke();
+            tasksController.FinishTask(task, TaskElement.TaskState.Success);
+            finished?.Invoke(PhaseResult.Success);
         }
     }
 }

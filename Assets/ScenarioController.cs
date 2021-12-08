@@ -13,6 +13,7 @@ public class ScenarioController : Singleton<ScenarioController>
     [Space(10)]
     [Header("Events")]
     public UnityEvent scenarioStarted;
+    public PhaseChanged phaseChanged;
 
     private new void Awake()
     {
@@ -40,6 +41,7 @@ public class ScenarioController : Singleton<ScenarioController>
             Phase phase = currentPhase;
             phase.enabled = true;
             phase.StartPhase();
+            phaseChanged?.Invoke(new PhaseEventArgs(phaseId, phase));
         }
     }
 
@@ -75,6 +77,19 @@ public class ScenarioController : Singleton<ScenarioController>
         {
             currentPhaseId++;
             StartPhase(currentPhaseId);
+        }
+    }
+
+    public class PhaseChanged : UnityEvent<PhaseEventArgs> { }
+    public class PhaseEventArgs
+    {
+        public int id;
+        public Phase phase;
+
+        public PhaseEventArgs(int id, Phase phase)
+        {
+            this.id = id;
+            this.phase = phase;
         }
     }
 }

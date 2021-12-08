@@ -5,10 +5,13 @@ using UnityEngine;
 public class TR_Handbrake : Phase
 {
     public bool handbrake = false;
+    TasksController tasksController;
+    TaskElement task;
     public override void StartPhase()
     {
         base.StartPhase();
-        Debug.Log("Нажмите пробел или поднимите стояночный тормоз чтобы затормозить");
+        tasksController = TasksController.GetInstance();
+        task = tasksController?.Add(info);
     }
 
     // Update is called once per frame
@@ -21,7 +24,8 @@ public class TR_Handbrake : Phase
 
         if (handbrake)
         {
-            finished?.Invoke();
+            tasksController.FinishTask(task, TaskElement.TaskState.Success);
+            finished?.Invoke(PhaseResult.Success);
         }
     }
 }

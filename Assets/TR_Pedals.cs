@@ -8,11 +8,14 @@ public class TR_Pedals : Phase
     public bool throttlePedal;
     public bool breakPedal;
     public bool clutchPedal;
+    TasksController tasksController;
+    TaskElement task;
 
     public override void StartPhase()
     {
         base.StartPhase();
-        Debug.Log("По очереди нажмите каждую из трех педалей");
+        tasksController = TasksController.GetInstance();
+        task = tasksController?.Add(info);
     }
 
     public override void ResetValues()
@@ -59,7 +62,8 @@ public class TR_Pedals : Phase
 
         if (throttlePedal && breakPedal && clutchPedal)
         {
-            finished?.Invoke();
+            tasksController.FinishTask(task, TaskElement.TaskState.Success);
+            finished?.Invoke(PhaseResult.Success);
         }
     }
 }

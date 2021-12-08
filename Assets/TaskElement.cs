@@ -30,12 +30,6 @@ public class TaskElement : MonoBehaviour
         sourceText = text.text;
     }
 
-    public void FinishTask(TaskState state)
-    {
-        SetIcon(state);
-        Minimize();
-    }
-
     [ContextMenu("Minimize")]
     public void Minimize()
     {
@@ -66,10 +60,15 @@ public class TaskElement : MonoBehaviour
 
     string MinimizeText(string text)
     {
-        string substring = text.Substring(0, minimizeTextLength - 3);
-        List<string> splitted = substring.Split(' ').ToList();
-        IEnumerable<string> ranged = splitted.GetRange(0, splitted.Count - 1);
-        string targetString = String.Join(" ", ranged);
-        return targetString.Insert(targetString.Length, "...");
+        if (text.Length >= minimizeTextLength)
+        {
+            string substring = text.Substring(0, minimizeTextLength - 3);
+            List<string> splitted = substring.Split(' ').ToList();
+            IEnumerable<string> ranged = splitted.GetRange(0, splitted.Count - 1);
+            string targetString = String.Join(" ", ranged);
+            return targetString.Insert(targetString.Length, "...");
+        }
+
+        return text;
     }
 }

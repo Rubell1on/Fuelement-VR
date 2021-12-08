@@ -5,10 +5,14 @@ using UnityEngine;
 public class TR_EngineEngaging : Phase
 {
     public bool engineStarted = false;
+    TasksController tasksController;
+    TaskElement task;
+
     public override void StartPhase()
     {
         base.StartPhase();
-        Debug.Log("Запустите двигатель автомобиля удерживая латинскую клавишу 'E'");
+        tasksController = TasksController.GetInstance();
+        task = tasksController?.Add(info);
     }
 
     public override void ResetValues()
@@ -22,7 +26,8 @@ public class TR_EngineEngaging : Phase
 
         if (engineStarted)
         {
-            finished?.Invoke();
+            tasksController.FinishTask(task, TaskElement.TaskState.Success);
+            finished?.Invoke(PhaseResult.Success);
         }
     }
 }

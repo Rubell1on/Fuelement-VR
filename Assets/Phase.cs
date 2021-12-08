@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Phase : MonoBehaviour
 {
+    public string info = "";
+    public enum PhaseResult { Success, Failed };
+
     public UnityEvent started = new UnityEvent();
-    public UnityEvent finished = new UnityEvent();
-    public UnityEvent failed = new UnityEvent();
+    public PhaseEvent finished = new PhaseEvent();
 
     public virtual void StartPhase() 
     {
@@ -20,4 +23,7 @@ public class Phase : MonoBehaviour
     }
 
     public virtual void ResetValues() {}
+
+    [Serializable]
+    public class PhaseEvent : UnityEvent<PhaseResult> { }
 }

@@ -9,11 +9,14 @@ public class TR_StearingWheel : Phase
 
     [SerializeField]
     float stearingValue = 0;
+    TasksController tasksController;
+    TaskElement task;
 
     public override void StartPhase()
     {
         base.StartPhase();
-        Debug.Log("Крутите рулевое колесо влево и вправо до конца");
+        tasksController = TasksController.GetInstance();
+        task = tasksController?.Add(info);
     }
 
     public override void ResetValues()
@@ -42,7 +45,8 @@ public class TR_StearingWheel : Phase
 
         if (left && right)
         {
-            finished?.Invoke();
+            tasksController.FinishTask(task, TaskElement.TaskState.Success);
+            finished?.Invoke(PhaseResult.Success);
         }
     }
 }
