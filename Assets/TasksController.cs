@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TasksController : Singleton<TasksController>
 {
     [SerializeField]
+    Text title;
+    [SerializeField]
     List<TaskElement> tasks = new List<TaskElement>();
+    [Space(10)]
+    [Header("Main settings")]
     [SerializeField]
     RectTransform body;
     [SerializeField]
@@ -18,10 +23,10 @@ public class TasksController : Singleton<TasksController>
     AudioClip success;
     [SerializeField]
     AudioClip error;
-    //List<AudioClip> audio = new List<AudioClip>();
     [SerializeField]
     AudioSource audioSource;
     public TaskElement currentTask { get { return tasks[tasks.Count - 1]; } }
+    public string Title { get { return title.text; } set { title.text = value; } }
 
     private new void Awake()
     {
@@ -53,6 +58,7 @@ public class TasksController : Singleton<TasksController>
     {
         task.SetIcon(state);
         task.Minimize();
+        task.SetOpacity();
         audioSource.clip = state == TaskElement.TaskState.Success ? success : error;
         audioSource.Play();
     }

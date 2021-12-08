@@ -13,17 +13,31 @@ public class FadeController : MonoBehaviour
     public UnityEvent fadedIn;
     public UnityEvent fadedOut;
 
+    Coroutine fading;
+
     [ContextMenu("Fade In")]
     public void FadeIn()
     {
-        StartCoroutine(_FadeIn());
+        if (fading != null) StopCoroutine(fading);
+        fading = StartCoroutine(_FadeIn());
     }
 
     [ContextMenu("Fade Out")]
     public void FadeOut()
     {
-        StartCoroutine(_FadeOut());
+        if (fading != null) StopCoroutine(fading);
+        fading = StartCoroutine(_FadeOut());
     }
+
+    [ContextMenu("Fade Out")]
+    public void FadeOutInstantly()
+    {
+        if (fading != null) StopCoroutine(fading);
+        Color color = image.color;
+        color.a = 0;
+        image.color = color;
+    }
+
 
     IEnumerator _FadeIn()
     {

@@ -78,6 +78,7 @@ public class LevelManager : Singleton<LevelManager>
             if (levelSetup)
             {
                 levelSetup.SetCar(car);
+                levelSetup.SetTitle(level.title);
             }
         }
     }

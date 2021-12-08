@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class LevelSettings : Singleton<LevelSettings>
 {
-    private CarData carData;
     public GameObject spawnPoint;
     public CustomCamera customCamera;
     public GameObject carInstance;
+    [SerializeField]
+    private CarData carData;
+    [SerializeField]
+    private TasksController tasksController;
 
     public new void Awake()
     {
@@ -26,5 +29,10 @@ public class LevelSettings : Singleton<LevelSettings>
             CamerasController camerasController = carInstance.GetComponent<CamerasController>();
             camerasController.customCamera = customCamera;
         }
+    }
+
+    public void SetTitle(string title)
+    {
+        tasksController.Title = title;
     }
 }

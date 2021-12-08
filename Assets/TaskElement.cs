@@ -18,6 +18,8 @@ public class TaskElement : MonoBehaviour
     [SerializeField]
     private LayoutElement layoutElement;
     [SerializeField]
+    private CanvasGroup canvasGroup;
+    [SerializeField]
     private List<Sprite> sprites;
 
     public int minimizeTextLength = 41;
@@ -56,6 +58,11 @@ public class TaskElement : MonoBehaviour
         if (icon == null) return;
 
         icon.sprite = sprites[(int)state];
+    }
+
+    public void SetOpacity(float opacity = 0.5f)
+    {
+        canvasGroup.alpha = opacity;
     }
 
     string MinimizeText(string text)

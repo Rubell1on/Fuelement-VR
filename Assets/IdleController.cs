@@ -75,6 +75,7 @@ public class IdleController : MonoBehaviour
         ClearIdleTimer();
         RemoveListeners();
         environmentCameraController.StopAnimation();
+        fadeController.FadeOutInstantly();
 
         if (autoIdle && !idleEnabled)
         {

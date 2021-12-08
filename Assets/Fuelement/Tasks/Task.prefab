@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7214539143960462722}
   - component: {fileID: 7214539143960462727}
   - component: {fileID: 7214539143960462726}
+  - component: {fileID: 1789044332521396567}
   m_Layer: 5
   m_Name: Task
   m_TagString: Untagged
@@ -142,12 +143,25 @@ MonoBehaviour:
   icon: {fileID: 7214539145836397143}
   text: {fileID: 7214539144138202949}
   layoutElement: {fileID: 7214539143960462725}
+  canvasGroup: {fileID: 1789044332521396567}
   sprites:
   - {fileID: 3286163911610860551, guid: 2003181777355fa408c1ad7f302e7e98, type: 3}
   - {fileID: 3286163911610860551, guid: 77d97703582b97f41bb8c10839a70633, type: 3}
   - {fileID: 3286163911610860551, guid: b138de30d61e46d46ae0cf89956cf655, type: 3}
   minimizeTextLength: 49
   minimizeHeight: 45
+--- !u!225 &1789044332521396567
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7214539143960462720}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7214539144138202944
 GameObject:
   m_ObjectHideFlags: 0
