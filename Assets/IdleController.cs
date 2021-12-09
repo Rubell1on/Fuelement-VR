@@ -19,6 +19,7 @@ public class IdleController : MonoBehaviour
     public bool idleEnabled = false;
     [Space(10f)]
     [Header("Events")]
+    public UnityEvent idleStarted;
     public UnityEvent idleStoped;
 
     Coroutine idleTimer = null;
@@ -66,6 +67,8 @@ public class IdleController : MonoBehaviour
         environmentCameraController.movementFinished.AddListener(OnMovementFinished);
         fadeController.fadedIn.AddListener(OnStartFidedIn);
         fadeController.FadeIn();
+
+        idleStarted?.Invoke();
     }
 
     [ContextMenu("Stop idle")]

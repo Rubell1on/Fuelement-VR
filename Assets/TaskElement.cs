@@ -37,13 +37,15 @@ public class TaskElement : MonoBehaviour
     }
 
     [ContextMenu("Minimize")]
-    public void Minimize(Action callback)
+    public void Minimize(Action callback = null)
     {
         RectTransform rt = GetComponent<RectTransform>();
         float sourceHeight = rt.sizeDelta.y;
         StartCoroutine(_Minimize(sourceHeight, minimizeHeight, () => {
             text.text = MinimizeText(text.text);
-            callback();
+
+            if (callback != null)
+                callback();
         }));
     }
 
@@ -54,7 +56,7 @@ public class TaskElement : MonoBehaviour
         text.text = sourceText;
     }
 
-    IEnumerator _Minimize(float sourceHeight, float targetHeight, Action callback)
+    IEnumerator _Minimize(float sourceHeight, float targetHeight, Action callback = null)
     {        
         if (sourceHeight > minimizeHeight)
         {
@@ -72,7 +74,8 @@ public class TaskElement : MonoBehaviour
         else
             yield return new WaitForSeconds(timeout);
 
-        callback();
+        if (callback != null)
+            callback();
     }
 
     public void SetText(string text)
@@ -89,13 +92,13 @@ public class TaskElement : MonoBehaviour
         icon.sprite = sprites[(int)state];
     }
 
-    public void SetOpacity(float targetOpacity = 0.5f)
+    public void SetOpacity(float targetOpacity = 0.5f, Action callback = null)
     {
         float opacity = canvasGroup.alpha;
-        StartCoroutine(_SetOpacity(opacity, targetOpacity));
+        StartCoroutine(_SetOpacity(opacity, targetOpacity, callback));
     }
 
-    IEnumerator _SetOpacity(float opacity, float targetOpacity)
+    IEnumerator _SetOpacity(float opacity, float targetOpacity, Action callback = null)
     {
         float time = 0;
 
@@ -107,6 +110,11 @@ public class TaskElement : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
+
+        canvasGroup.alpha = targetOpacity;
+
+        if (callback != null)
+            callback();
     }
 
     string MinimizeText(string text)

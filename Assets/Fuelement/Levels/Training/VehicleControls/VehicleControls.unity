@@ -265,12 +265,39 @@ MonoBehaviour:
   canExit: 1
   timeBeforeIdle: 60
   idleEnabled: 0
+  idleStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 716519069}
+        m_TargetAssemblyTypeName: TasksController, Assembly-CSharp
+        m_MethodName: HideTaskBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   idleStoped:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 502220383}
         m_TargetAssemblyTypeName: DynamicCameraController, Assembly-CSharp
         m_MethodName: MoveToCurrentInstant
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 716519069}
+        m_TargetAssemblyTypeName: TasksController, Assembly-CSharp
+        m_MethodName: ShowTaskBar
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -919,6 +946,7 @@ GameObject:
   - component: {fileID: 716519067}
   - component: {fileID: 716519069}
   - component: {fileID: 716519068}
+  - component: {fileID: 716519070}
   m_Layer: 0
   m_Name: '[Tasks]'
   m_TagString: Untagged
@@ -1054,10 +1082,48 @@ MonoBehaviour:
   body: {fileID: 1066775045}
   template: {fileID: 7214539143960462726, guid: ea74c7e50a142cb4787fd878d7042f53,
     type: 3}
+  canvasGroup: {fileID: 716519070}
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationSpeed: 1.5
   added: {fileID: 8300000, guid: a9bca67999fc3864d8275e2ef621d7b6, type: 3}
   success: {fileID: 8300000, guid: 9c268d08d466c884287b3775cbef099e, type: 3}
   error: {fileID: 8300000, guid: bd37ba26b9e9fcc4c9fa0a3fc773bd6d, type: 3}
   audioSource: {fileID: 716519068}
+--- !u!225 &716519070
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716519066}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &793727836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.94509804, g: 0.94509804, b: 0.94509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3679,6 +3745,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d671c2665141d043a030a81fd40670a, type: 3}
+--- !u!1 &523530559377815184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7256659397722399897, guid: 0d671c2665141d043a030a81fd40670a,
+    type: 3}
+  m_PrefabInstance: {fileID: 523530559377815183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &523530559377815185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5685401482990478046, guid: 0d671c2665141d043a030a81fd40670a,
+    type: 3}
+  m_PrefabInstance: {fileID: 523530559377815183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba92132a60e9f64381cf632baf775a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &523530559377815186 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7527129712119994830, guid: 0d671c2665141d043a030a81fd40670a,
+    type: 3}
+  m_PrefabInstance: {fileID: 523530559377815183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &523530559377815187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523530559377815184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7844289bb969c4c93d323e6e2c2c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 523530559377815186}
+  drivetrain: {fileID: 523530559377815185}
 --- !u!4 &5306769522597641695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5685401482997500752, guid: 0d671c2665141d043a030a81fd40670a,

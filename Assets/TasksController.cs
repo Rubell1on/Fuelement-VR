@@ -10,12 +10,21 @@ public class TasksController : Singleton<TasksController>
     Text title;
     [SerializeField]
     List<TaskElement> tasks = new List<TaskElement>();
+
     [Space(10)]
     [Header("Main settings")]
     [SerializeField]
     RectTransform body;
     [SerializeField]
     TaskElement template;
+
+    [Space(10)]
+    [Header("Animation settings")]
+    [SerializeField]
+    CanvasGroup canvasGroup;
+    public AnimationCurve animationCurve;
+    public float animationSpeed = 2;
+
     [Space(10)]
     [Header("Audio settings")]
     [SerializeField]
@@ -26,6 +35,8 @@ public class TasksController : Singleton<TasksController>
     AudioClip error;
     [SerializeField]
     AudioSource audioSource;
+
+    Coroutine taskBar = null;
     public TaskElement currentTask { get { return tasks[tasks.Count - 1]; } }
     public string Title { get { return title.text; } set { title.text = value; } }
 
@@ -33,12 +44,6 @@ public class TasksController : Singleton<TasksController>
     {
         SetDoNotDestroyOnLoad(false);
         base.Awake();
-    }
-
-    [ContextMenu("Add")]
-    public void _Add()
-    {
-        Add("Здесь должен быть текст", TaskElement.TaskState.Active);
     }
 
     public TaskElement Add(string text, TaskElement.TaskState state = TaskElement.TaskState.Active)
@@ -55,6 +60,22 @@ public class TasksController : Singleton<TasksController>
         return element;
     }
 
+    [ContextMenu("Remove all tasks")]
+    public void RemoveAllTasks()
+    {
+        tasks.ForEach(RemoveTask);
+        tasks.Clear(); 
+    }
+    public void RemoveTask(TaskElement task)
+    {
+        task.Minimize();
+        task.SetOpacity(0, () =>
+        {
+            tasks.Remove(task);
+            Destroy(task.gameObject);
+        });
+    }
+
     public void FinishTask(TaskElement task, TaskElement.TaskState state, Action callback)
     {
         audioSource.clip = state == TaskElement.TaskState.Success ? success : error;
@@ -63,5 +84,47 @@ public class TasksController : Singleton<TasksController>
         task.SetIcon(state);
         task.SetOpacity();
         task.Minimize(callback);
+    }
+
+    public void ShowTaskBarInstantly()
+    {
+        if (taskBar != null) StopCoroutine(taskBar);
+        canvasGroup.alpha = 1;
+    }
+
+    public void HideTaskBarInstantly()
+    {
+        if (taskBar != null) StopCoroutine(taskBar);
+        canvasGroup.alpha = 0;
+    }
+
+    [ContextMenu("Show task bar")]
+    public void ShowTaskBar()
+    {
+        if (taskBar != null) StopCoroutine(taskBar);
+        taskBar = StartCoroutine(_SetTaskBarOpacity(1));
+    }
+
+    [ContextMenu("Hide task bar")]
+    public void HideTaskBar()
+    {
+        if (taskBar != null) StopCoroutine(taskBar);
+        taskBar = StartCoroutine(_SetTaskBarOpacity(0));
+    }
+
+    IEnumerator _SetTaskBarOpacity(float targetOpacity)
+    {
+        float currentOpacity = canvasGroup.alpha;
+        float time = 0;
+
+        while(time < 0.99)
+        {
+            float value = animationCurve.Evaluate(time);
+            canvasGroup.alpha = Mathf.Lerp(currentOpacity, targetOpacity, value);
+            time += Time.deltaTime * animationSpeed;
+            yield return new WaitForEndOfFrame();
+        }
+
+        canvasGroup.alpha = targetOpacity;
     }
 }
