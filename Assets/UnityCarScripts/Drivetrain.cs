@@ -753,7 +753,8 @@ public class Drivetrain : MonoBehaviour {
 		if (shiftImmediately==true) 
 		{
 			gear=nextGear;
-			if (nextGear !=neutral ) shiftTriggered=true; // in order to trigger the shift sound
+			//if (nextGear !=neutral ) 
+				shiftTriggered=true; // in order to trigger the shift sound
 			changingGear=false;
 		}
 		else

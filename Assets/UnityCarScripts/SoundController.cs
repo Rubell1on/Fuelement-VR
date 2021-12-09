@@ -137,10 +137,10 @@ public class SoundController : MonoBehaviour {
 			if (carController.ABSTriggered) ABSTriggerSource.PlayOneShot(ABSTrigger);			
 			brakeNoiseSource.volume=Mathf.Clamp01(carController.brake*Mathf.Abs(AverageWheelVelo())*0.1f)*brakeNoiseVolume;
 		}	
-		if (drivetrain!=null) {		
-			if (drivetrain.startEngine && drivetrain.rpm<drivetrain.minRPM) {if (!startEngineSource.isPlaying) startEngineSource.Play();}
-			else startEngineSource.Stop();
-		}
+		//if (drivetrain!=null) {		
+		//	if (drivetrain.startEngine && drivetrain.rpm<drivetrain.minRPM) {if (!startEngineSource.isPlaying) startEngineSource.Play();}
+		//	else startEngineSource.Stop();
+		//}
 	}
 	
 	float AverageWheelVelo() {
