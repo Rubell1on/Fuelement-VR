@@ -17,6 +17,7 @@ public class TR_EngineEngaging : Phase
 
     public override void ResetValues()
     {
+        base.ResetValues();
         engineStarted = false;
     }
 
@@ -24,10 +25,13 @@ public class TR_EngineEngaging : Phase
     {
         if (Input.GetAxis("StartEngine") == 1 || Input.GetAxis("Keyboard_StartEngine") == 1) engineStarted = true;
 
-        if (engineStarted)
+        if (engineStarted && !executed)
         {
-            tasksController.FinishTask(task, TaskElement.TaskState.Success);
-            finished?.Invoke(PhaseResult.Success);
+            executed = true;
+            tasksController.FinishTask(task, TaskElement.TaskState.Success, () =>
+            {
+                finished?.Invoke(PhaseResult.Success);
+            });
         }
     }
 }

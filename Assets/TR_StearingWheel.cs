@@ -21,6 +21,7 @@ public class TR_StearingWheel : Phase
 
     public override void ResetValues()
     {
+        base.ResetValues();
         left = false;
         right = false;
         stearingValue = 0;
@@ -43,10 +44,13 @@ public class TR_StearingWheel : Phase
         if (stearingValue == -1) left = true;
         if (stearingValue == 1) right = true;
 
-        if (left && right)
+        if (left && right && !executed)
         {
-            tasksController.FinishTask(task, TaskElement.TaskState.Success);
-            finished?.Invoke(PhaseResult.Success);
+            executed = true;
+            tasksController.FinishTask(task, TaskElement.TaskState.Success, () =>
+            {
+                finished?.Invoke(PhaseResult.Success);
+            });
         }
     }
 }

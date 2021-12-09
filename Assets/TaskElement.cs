@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,9 @@ public class TaskElement : MonoBehaviour
 
     public int minimizeTextLength = 41;
     public float minimizeHeight = 49f;
+    public float timeout = 0.5f;
+    public float minimizationSpeed = 2;
+    public AnimationCurve animationCurve;
 
     string sourceText;
 
@@ -33,10 +37,14 @@ public class TaskElement : MonoBehaviour
     }
 
     [ContextMenu("Minimize")]
-    public void Minimize()
+    public void Minimize(Action callback)
     {
-        layoutElement.preferredHeight = minimizeHeight;
-        text.text = MinimizeText(text.text);
+        RectTransform rt = GetComponent<RectTransform>();
+        float sourceHeight = rt.sizeDelta.y;
+        StartCoroutine(_Minimize(sourceHeight, minimizeHeight, () => {
+            text.text = MinimizeText(text.text);
+            callback();
+        }));
     }
 
     [ContextMenu("Maximize")]
@@ -44,6 +52,27 @@ public class TaskElement : MonoBehaviour
     {
         layoutElement.preferredHeight = -1;
         text.text = sourceText;
+    }
+
+    IEnumerator _Minimize(float sourceHeight, float targetHeight, Action callback)
+    {        
+        if (sourceHeight > minimizeHeight)
+        {
+            float time = 0;
+
+            while (time < 0.99)
+            {
+                sourceHeight = Mathf.Lerp(sourceHeight, targetHeight, time);
+                layoutElement.preferredHeight = sourceHeight;
+                time += Time.deltaTime * minimizationSpeed;
+
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+            yield return new WaitForSeconds(timeout);
+
+        callback();
     }
 
     public void SetText(string text)
@@ -60,9 +89,24 @@ public class TaskElement : MonoBehaviour
         icon.sprite = sprites[(int)state];
     }
 
-    public void SetOpacity(float opacity = 0.5f)
+    public void SetOpacity(float targetOpacity = 0.5f)
     {
-        canvasGroup.alpha = opacity;
+        float opacity = canvasGroup.alpha;
+        StartCoroutine(_SetOpacity(opacity, targetOpacity));
+    }
+
+    IEnumerator _SetOpacity(float opacity, float targetOpacity)
+    {
+        float time = 0;
+
+        while(time < 0.99)
+        {
+            opacity = Mathf.Lerp(opacity, targetOpacity, time);
+            canvasGroup.alpha = opacity;
+            time += Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     string MinimizeText(string text)

@@ -20,6 +20,7 @@ public class TR_Pedals : Phase
 
     public override void ResetValues()
     {
+        base.ResetValues();
         throttlePedal = false;
         breakPedal = false;
         clutchPedal = false;
@@ -60,10 +61,13 @@ public class TR_Pedals : Phase
             }
         }
 
-        if (throttlePedal && breakPedal && clutchPedal)
+        if (throttlePedal && breakPedal && clutchPedal && !executed)
         {
-            tasksController.FinishTask(task, TaskElement.TaskState.Success);
-            finished?.Invoke(PhaseResult.Success);
+            executed = true;
+            tasksController.FinishTask(task, TaskElement.TaskState.Success, () =>
+            {
+                finished?.Invoke(PhaseResult.Success);
+            });
         }
     }
 }

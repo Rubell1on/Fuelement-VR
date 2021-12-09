@@ -20,6 +20,7 @@ public class TR_GearShifting : Phase
 
     public override void ResetValues()
     {
+        base.ResetValues();
         shiftUp = false;
         shiftDown = false;
         clutchDisengaged = false;
@@ -42,10 +43,13 @@ public class TR_GearShifting : Phase
             shiftDown = true;
         }
 
-        if (shiftUp && shiftDown)
+        if (shiftUp && shiftDown && !executed)
         {
-            tasksController.FinishTask(task, TaskElement.TaskState.Success);
-            finished?.Invoke(PhaseResult.Success);
+            executed = true;
+            tasksController.FinishTask(task, TaskElement.TaskState.Success, () =>
+            {
+                finished?.Invoke(PhaseResult.Success);
+            });
         }
     }
 }

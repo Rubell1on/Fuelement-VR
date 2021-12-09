@@ -6,6 +6,7 @@ public class Phase : MonoBehaviour
 {
     public string info = "";
     public enum PhaseResult { Success, Failed };
+    public bool executed = false;
 
     public UnityEvent started = new UnityEvent();
     public PhaseEvent finished = new PhaseEvent();
@@ -22,7 +23,9 @@ public class Phase : MonoBehaviour
         StartPhase();
     }
 
-    public virtual void ResetValues() {}
+    public virtual void ResetValues() {
+        executed = false;
+    }
 
     [Serializable]
     public class PhaseEvent : UnityEvent<PhaseResult> { }

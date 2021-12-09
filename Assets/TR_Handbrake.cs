@@ -7,11 +7,18 @@ public class TR_Handbrake : Phase
     public bool handbrake = false;
     TasksController tasksController;
     TaskElement task;
+
     public override void StartPhase()
     {
         base.StartPhase();
         tasksController = TasksController.GetInstance();
         task = tasksController?.Add(info);
+    }
+
+    public override void ResetValues()
+    {
+        base.ResetValues();
+        handbrake = false;
     }
 
     // Update is called once per frame
@@ -22,10 +29,13 @@ public class TR_Handbrake : Phase
             handbrake = true;
         }
 
-        if (handbrake)
+        if (handbrake && !executed)
         {
-            tasksController.FinishTask(task, TaskElement.TaskState.Success);
-            finished?.Invoke(PhaseResult.Success);
+            executed = true;
+            tasksController.FinishTask(task, TaskElement.TaskState.Success, () =>
+            {
+                finished?.Invoke(PhaseResult.Success);
+            });
         }
     }
 }

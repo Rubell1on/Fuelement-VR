@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,24 +43,25 @@ public class TasksController : Singleton<TasksController>
 
     public TaskElement Add(string text, TaskElement.TaskState state = TaskElement.TaskState.Active)
     {
+        audioSource.clip = added;
+        audioSource.Play();
         GameObject instance = Instantiate(template.gameObject, body.transform);
         TaskElement element = instance.GetComponent<TaskElement>();
         element.SetText(text);
         element.SetIcon(state);
 
         tasks.Add(element);
-        audioSource.clip = added;
-        audioSource.Play();
 
         return element;
     }
 
-    public void FinishTask(TaskElement task, TaskElement.TaskState state)
+    public void FinishTask(TaskElement task, TaskElement.TaskState state, Action callback)
     {
-        task.SetIcon(state);
-        task.Minimize();
-        task.SetOpacity();
         audioSource.clip = state == TaskElement.TaskState.Success ? success : error;
         audioSource.Play();
+
+        task.SetIcon(state);
+        task.SetOpacity();
+        task.Minimize(callback);
     }
 }
