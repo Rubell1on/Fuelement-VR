@@ -11,7 +11,6 @@ public class LevelManager : Singleton<LevelManager>
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         //StartCoroutine(Load(2));
     }
 
@@ -78,6 +77,7 @@ public class LevelManager : Singleton<LevelManager>
             if (levelSetup)
             {
                 levelSetup.SetCar(car);
+                levelSetup.levelData = level;
                 levelSetup.SetTitle(level.title);
             }
         }

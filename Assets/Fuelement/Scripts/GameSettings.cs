@@ -18,7 +18,6 @@ public class GameSettings : Singleton<GameSettings>
 
     private void Start()
     {
-        DontDestroyOnLoad(this);
         //SaveSettings();
         //LoadSettings();
     }

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class DynamicCameraController : MonoBehaviour
 {
+    public Transform target;
     [Header("Main settings")]
     public Camera sourceCamera;
     public Transform[] cameraPlaces;
@@ -23,6 +24,14 @@ public class DynamicCameraController : MonoBehaviour
     public MovementFinished movementFinished;
 
     Coroutine currentCoroutine;
+
+    private void Start()
+    {
+        if (target != null)
+        {
+            transform.parent = target;
+        }
+    }
 
     [ContextMenu("Next")]
     public void Next()

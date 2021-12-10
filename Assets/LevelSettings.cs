@@ -7,8 +7,8 @@ public class LevelSettings : Singleton<LevelSettings>
     public GameObject spawnPoint;
     public CustomCamera customCamera;
     public GameObject carInstance;
-    [SerializeField]
-    private CarData carData;
+    public CarData carData;
+    public CustomLevel levelData;
     [SerializeField]
     private TasksController tasksController;
 
