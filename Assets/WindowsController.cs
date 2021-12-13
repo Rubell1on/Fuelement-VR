@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,15 @@ public class WindowsController : MonoBehaviour
     public List<Window> windows;
     public int currentId = 0;
     public UnityEvent done;
+    public UnityEvent cancel;
 
     private Window currentWindow;
 
     // Start is called before the first frame update
     void Awake()
     {
+        InitWindows();
+
         if (windows.Count > 0)
         {
             CustomButton back = windows[0].windowControls.back;
@@ -31,13 +35,8 @@ public class WindowsController : MonoBehaviour
                 next.gameObject.SetActive(false);
             }
 
-            lastWindow?.windowControls?.done.onClick.AddListener(() =>
-            {
-                done?.Invoke();
-            });
-
             windows.ForEach(w => {
-                if (w.gameObject.activeSelf)
+                if (w.gameObject.activeSelf || w.GetComponent<CanvasGroup>().alpha != 0)
                 {
                     w.Hide(true);
                 }
@@ -49,22 +48,93 @@ public class WindowsController : MonoBehaviour
                 {
                     HideCancel(controls);
                 }
+                else
+                {
+                    controls.cancel.onClick.AddListener(() => cancel?.Invoke());
+                }
+
+                HideDone(controls);
             });
 
-            //if (windows.Count)
+            CustomButton doneButton = lastWindow?.windowControls.done;
+            doneButton?.gameObject.SetActive(true);
+
+            lastWindow?.windowControls?.done.onClick.AddListener(() =>
+            {
+                done?.Invoke();
+                lastWindow.Hide();
+                currentWindow = null;
+            });
+        }
+    }
+
+    private void OnDestroy()
+    {
+        List<WindowControls> controls = windows.Select(w => w.windowControls).ToList();
+        RemoveListenersFromButtons(controls);
+    }
+
+    void RemoveListenersFromButtons(List<WindowControls> controls)
+    {
+        controls.ForEach(c =>
+        {
+            List<CustomButton> buttons = new List<CustomButton>() { c.back, c.next, c.done, c.cancel };
+            buttons.Where(b => b != null).ToList().ForEach(RemoveListeners);
+
+        });
+
+        void RemoveListeners(CustomButton button)
+        {
+            if (button.onClick.GetPersistentEventCount() > 0)
+            {
+                button.onClick.RemoveAllListeners();
+            }
+        }
+    }
+
+    void InitWindows()
+    {
+        int count = transform.childCount;
+        if (count == 0)
+        {
+            return;
+        }
+
+        List<Window> windows = new List<Window>();
+
+        for (int i = 0; i < count; i++)
+        {
+            Window window = transform.GetChild(i)?.GetComponent<Window>();
+            windows.Add(window);
+        }
+
+        this.windows = windows;
+
+        //windows = transform.GetComponentsInChildren<Window>().ToList();
+    }
+
+    void HideDone(WindowControls controls)
+    {
+        CustomButton done = controls.done;
+
+        if (done != null) 
+        {
+            if (done.gameObject.activeSelf)
+            {
+                done.gameObject.SetActive(false);
+            }
         }
     }
 
     void HideCancel(WindowControls controls)
     {
         CustomButton cancel = controls.cancel;
-        if (cancel != null)
+        if (cancel?.gameObject?.activeSelf == false)
         {
-            if (cancel.gameObject.activeSelf)
-            {
-                cancel.gameObject.SetActive(false);
-            }
+            return;
         }
+
+        cancel.gameObject.SetActive(false);
     }
 
     void SetMainActions(WindowControls controls)

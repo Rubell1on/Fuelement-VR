@@ -13,7 +13,9 @@ public class IdleController : MonoBehaviour
     [Space(10f)]
     [Header("Auto idle settings")]
     public bool autoIdle = false;
-    public bool canExit = true;
+    [SerializeField]
+    bool canExit = true;
+    public bool CanExit { get { return canExit; } set { canExit = value; } }
     public float timeBeforeIdle = 10f;
     [Space(5)]
     public bool idleEnabled = false;

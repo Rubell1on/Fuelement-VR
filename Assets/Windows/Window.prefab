@@ -435,6 +435,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  disappearing:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   scaling:
     serializedVersion: 2
     m_Curve:
@@ -455,6 +479,30 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scalingBack:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.5292125
+      outSlope: -1.5292125
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09048587
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -764,6 +812,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 731750357205720364, guid: b7b833f3dd97b2545aa9a4768cc2a4f2,
+        type: 3}
+      propertyPath: done
+      value: 
+      objectReference: {fileID: 4109251236278798620}
     - target: {fileID: 1194514924559393264, guid: b7b833f3dd97b2545aa9a4768cc2a4f2,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1054,6 +1107,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5421558140249391690, guid: b7b833f3dd97b2545aa9a4768cc2a4f2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7b833f3dd97b2545aa9a4768cc2a4f2, type: 3}
 --- !u!224 &7108937112560937638 stripped
@@ -1072,5 +1130,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33f0bc9edf6f0eb4bbaa7636bb18f07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4109251236278798620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5421558140249391690, guid: b7b833f3dd97b2545aa9a4768cc2a4f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8231384250176949078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460fbf4762ec2fb4ca7bd8e742688ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

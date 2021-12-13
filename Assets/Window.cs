@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,11 @@ public class Window : MonoBehaviour
     [ContextMenu("Show instantly")]
     void ShowInstantly()
     {
+        if (transform.localScale != Vector3.one)
+        {
+            transform.localScale = Vector3.one;
+        }
+
         canvasGroup.alpha = 1;
         gameObject.SetActive(true);
     }
@@ -72,6 +78,7 @@ public class Window : MonoBehaviour
         }
 
         RectTransform rt = canvasGroup.GetComponent<RectTransform>();
+
         LeanTween.scale(rt, Vector3.one * 0.9f, animationDuration).setEase(scaling);
         LeanTween.alphaCanvas(canvasGroup, 0, animationDuration).setEase(appearing).setOnComplete(() => 
         {

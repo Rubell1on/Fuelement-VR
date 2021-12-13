@@ -12,6 +12,7 @@ public class ScenarioController : Singleton<ScenarioController>
     public Phase currentPhase { get { return phases[currentPhaseId]; } }
     [Space(10)]
     [Header("Events")]
+    public UnityEvent scenarioSetup;
     public UnityEvent scenarioStarted;
     public PhaseChanged phaseChanged;
 
@@ -24,13 +25,13 @@ public class ScenarioController : Singleton<ScenarioController>
 
     private void Start()
     {
-        StartScenario();
+        scenarioSetup?.Invoke();
     }
 
     public void StartScenario()
     {
-        StartPhase(0);
         scenarioStarted?.Invoke();
+        StartPhase(0);
     }
 
     public void StartPhase(int phaseId)
