@@ -76,7 +76,7 @@ public class Semaphore : MonoBehaviour
                             break;
 
                         case SemaphoreSection.SectionType.green:
-                            yield return StartCoroutine(Section._Blink(3, 0.5f));
+                            yield return StartCoroutine(Section.Blink());
                             SetSingleSectionState(SemaphoreSection.SectionType.yellow);
                             yield return StartCoroutine(SetState(targetSection, sectionChangeDelay));
 
@@ -101,7 +101,7 @@ public class Semaphore : MonoBehaviour
                             break;
 
                         case SemaphoreSection.SectionType.green:
-                            yield return StartCoroutine(Section._Blink(3, 0.5f));
+                            yield return StartCoroutine(Section.Blink());
                             SetSingleSectionState(SemaphoreSection.SectionType.yellow);
                             yield return StartCoroutine(SetState(targetSection, sectionChangeDelay));
 

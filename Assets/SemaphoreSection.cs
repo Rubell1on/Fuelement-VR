@@ -44,11 +44,6 @@ public class SemaphoreSection : MonoBehaviour
         enabled = false;
     }
 
-    public void Blink(int count = 3, float delay = 0.5f, Action callback = null)
-    {
-        StartCoroutine(_Blink(count, delay, callback));
-    }
-
     void SetColor(Color color)
     {
         _inner.SetColor("_Color", color);
@@ -56,7 +51,7 @@ public class SemaphoreSection : MonoBehaviour
         _inner.SetColor("_EmissionColor", color * emissionIntensity);
     }
 
-    public IEnumerator _Blink(int count, float delay, System.Action callback = null)
+    public IEnumerator Blink(int count = 3, float delay = 0.5f, System.Action callback = null)
     {
         int blinked = 0;
 
