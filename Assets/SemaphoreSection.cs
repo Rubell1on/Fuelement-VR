@@ -5,54 +5,55 @@ using UnityEngine;
 
 public class SemaphoreSection : MonoBehaviour
 {
-    public enum SectionType { none = -1, red, yellow, green };
+    public bool Enabled { get { return enabled; } }
+    public enum SectionType { red, yellow, green };
     public SectionType type;
-    public Color[] colors = { Color.red, Color.yellow, Color.red };
-    public Color defaultColor = Color.black;
+    public Color[] colors = { Color.red, Color.yellow, Color.green };
+    public Color disabled = Color.black;
     public float emissionIntensity = 2;
 
     private Material _inner;
+    private bool enabled = false;
 
     private void Start()
     {
         _inner = GetComponent<MeshRenderer>().materials[1];
+
     }
 
-    [ContextMenu("Set red")]
-    public void SetRed()
+    public void EnableLight()
     {
-        SetColor(colors[(int)SectionType.red]);
+        if (enabled)
+        {
+            return;
+        }
+
+        SetColor(colors[(int)type]);
+        enabled = true;
     }
 
-    [ContextMenu("Set yellow")]
-    public void SetYellow()
+    public void DisableLight()
     {
-        SetColor(colors[(int)SectionType.yellow]);
-    }
+        if (!enabled)
+        {
+            return;
+        }
 
-    [ContextMenu("Set green")]
-    public void SetGreen()
-    {
-        SetColor(colors[(int)SectionType.green]);
-    }
-
-    [ContextMenu("Set default")]
-    public void SetDefault()
-    {
-        SetColor(defaultColor);
+        SetColor(disabled);
         _inner.DisableKeyword("_EMISSION");
+        enabled = false;
     }
 
-    public void SetColor(Color color)
+    public void Blink(int count = 3, float delay = 0.5f, Action callback = null)
+    {
+        StartCoroutine(_Blink(count, delay, callback));
+    }
+
+    void SetColor(Color color)
     {
         _inner.SetColor("_Color", color);
         _inner.EnableKeyword("_EMISSION");
         _inner.SetColor("_EmissionColor", color * emissionIntensity);
-    }
-
-    public void Blink(int count, float delay, Action callback = null)
-    {
-        StartCoroutine(_Blink(5, 0.5f, callback));
     }
 
     IEnumerator _Blink(int count, float delay, System.Action callback = null)
@@ -61,9 +62,9 @@ public class SemaphoreSection : MonoBehaviour
 
         while(blinked < count)
         {
-            SetDefault();
+            DisableLight();
             yield return new WaitForSeconds(delay);
-            SetColor(colors[(int)type]);
+            EnableLight();
             yield return new WaitForSeconds(delay);
             blinked++;
         }

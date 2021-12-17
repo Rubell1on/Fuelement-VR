@@ -1,125 +1,121 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Semaphore : MonoBehaviour
 {
-    public SemaphoreSection.SectionType currentSection = SemaphoreSection.SectionType.none;
+    public SemaphoreSection.SectionType currentSection = SemaphoreSection.SectionType.yellow;
     public List<SemaphoreSection> sections;
+    public float sectionChangeDelay = 2;
 
     public SemaphoreSection Section { get { return sections[(int)currentSection]; } }
 
-    public void ChangeCurrentSection(SemaphoreSection.SectionType targetSection)
+    private void Start()
     {
-        if (currentSection == targetSection)
-        {
-            return;
-        }
+        StartCoroutine(ChangeSection(currentSection));
+    }
+
+    [ContextMenu("Set red")]
+    public void SetRed()
+    {
+        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.red));
+    }
+
+    [ContextMenu("Set yellow")]
+    public void SetYellow()
+    {
+        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.yellow));
+    }
+
+    [ContextMenu("Set green")]
+    public void SetGreen()
+    {
+        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.green));
+    }
+
+    public IEnumerator ChangeSection(SemaphoreSection.SectionType targetSection, float delay = 0)
+    {
+        yield return new WaitForSeconds(delay);
 
         switch (targetSection)
         {
+            case SemaphoreSection.SectionType.red:
+
+                switch (currentSection)
+                {
+                    case SemaphoreSection.SectionType.red:
+                        Section.EnableLight();
+                            
+                        break;
+
+                    case SemaphoreSection.SectionType.yellow:
+                        ChangeSingeSection(SemaphoreSection.SectionType.red);
+                        break;
+
+                    case SemaphoreSection.SectionType.green:
+                        Section.Blink(callback: () =>
+                        {
+                            ChangeSingeSection(SemaphoreSection.SectionType.yellow);
+                            StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
+                        });
+
+                        yield break;
+                }
+
+                break;
+
+            case SemaphoreSection.SectionType.yellow:
+                switch (currentSection)
+                {
+                    case SemaphoreSection.SectionType.red:
+                        ChangeSingeSection(SemaphoreSection.SectionType.yellow);
+                        break;
+
+                    case SemaphoreSection.SectionType.yellow:
+                        Section.EnableLight();
+                        break;
+
+                    case SemaphoreSection.SectionType.green:
+                        Section.Blink(callback: () =>
+                        {
+                            ChangeSingeSection(SemaphoreSection.SectionType.yellow);
+                            StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
+                        });
+
+                        yield break;
+                }
+
+                break;
+
             case SemaphoreSection.SectionType.green:
-                
+                switch (currentSection)
+                {
+                    case SemaphoreSection.SectionType.red:
+                        ChangeSingeSection(SemaphoreSection.SectionType.yellow);
+                        StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
+
+                        yield break;
+
+                    case SemaphoreSection.SectionType.yellow:
+                        ChangeSingeSection(SemaphoreSection.SectionType.green);
+                        
+                        break;
+
+                    case SemaphoreSection.SectionType.green:
+                        Section.EnableLight();
+
+                        break;
+                }
+
                 break;
         }
-
-        void ChangeToYellow()
-        {
-            switch(currentSection)
-            {
-                case SemaphoreSection.SectionType.green:
-                    Section.Blink(5, 0.5f, () =>
-                    {
-                        Section.SetDefault();
-                        sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-                        currentSection = SemaphoreSection.SectionType.yellow;
-                    });
-
-                    break;
-
-                case SemaphoreSection.SectionType.red:
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-                    currentSection = SemaphoreSection.SectionType.yellow;
-                    break;
-            }
-        }
-
-        IEnumerator ChangeToGreen()
-        {
-            switch (currentSection)
-            {
-                case SemaphoreSection.SectionType.yellow:
-                    
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.green].SetGreen();
-                    currentSection = SemaphoreSection.SectionType.green;
-
-                    break;
-
-                case SemaphoreSection.SectionType.red:
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-                    currentSection = SemaphoreSection.SectionType.yellow;
-
-                    yield return new WaitForSeconds(2);
-
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.green].SetGreen();
-                    currentSection = SemaphoreSection.SectionType.green;
-
-                    break;
-            }
-        }
-
-        IEnumerator ChangeToRed()
-        {
-            switch (currentSection)
-            {
-                case SemaphoreSection.SectionType.yellow:
-
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.red].SetRed();
-                    currentSection = SemaphoreSection.SectionType.red;
-
-                    break;
-
-                case SemaphoreSection.SectionType.green:
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-                    currentSection = SemaphoreSection.SectionType.yellow;
-
-                    yield return new WaitForSeconds(2);
-
-                    Section.SetDefault();
-                    sections[(int)SemaphoreSection.SectionType.red].SetRed();
-                    currentSection = SemaphoreSection.SectionType.red;
-
-                    break;
-            }
-        }
-
-        //IEnumerator OnBlinkFinished()
-        //{
-        //    Section.SetDefault();
-        //    sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-        //    currentSection = SemaphoreSection.SectionType.yellow;
-        //    yield return new WaitForSeconds(2);
-
-        //    sections[(int)SemaphoreSection.SectionType.yellow].SetYellow();
-        //    currentSection = SemaphoreSection.SectionType.yellow;
-        //}
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void ChangeSingeSection(SemaphoreSection.SectionType targetSection)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Section.DisableLight();
+        sections[(int)targetSection].EnableLight();
+        currentSection = targetSection;
     }
 }
