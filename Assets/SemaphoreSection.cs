@@ -56,7 +56,7 @@ public class SemaphoreSection : MonoBehaviour
         _inner.SetColor("_EmissionColor", color * emissionIntensity);
     }
 
-    IEnumerator _Blink(int count, float delay, System.Action callback = null)
+    public IEnumerator _Blink(int count, float delay, System.Action callback = null)
     {
         int blinked = 0;
 

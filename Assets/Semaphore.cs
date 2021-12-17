@@ -2,120 +2,149 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Semaphore : MonoBehaviour
 {
-    public SemaphoreSection.SectionType currentSection = SemaphoreSection.SectionType.yellow;
+    public bool enableOnStart = false;
+    public bool SettingState { get { return settingState; } }
+    public SemaphoreSection.SectionType state = SemaphoreSection.SectionType.red;
     public List<SemaphoreSection> sections;
     public float sectionChangeDelay = 2;
 
-    public SemaphoreSection Section { get { return sections[(int)currentSection]; } }
+    public UnityEvent sectionChangeFinished = new UnityEvent();
+
+    public SemaphoreSection Section { get { return sections[(int)state]; } }
+
+    private Coroutine stateSettting;
+    private bool settingState = false;
 
     private void Start()
     {
-        StartCoroutine(ChangeSection(currentSection));
+        if (enableOnStart)
+        {
+            stateSettting = StartCoroutine(SetState(SemaphoreSection.SectionType.yellow));
+        }
     }
 
     [ContextMenu("Set red")]
     public void SetRed()
     {
-        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.red));
+        stateSettting = StartCoroutine(SetState(SemaphoreSection.SectionType.red));
     }
 
     [ContextMenu("Set yellow")]
     public void SetYellow()
     {
-        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.yellow));
+        stateSettting = StartCoroutine(SetState(SemaphoreSection.SectionType.yellow));
     }
 
     [ContextMenu("Set green")]
     public void SetGreen()
     {
-        StartCoroutine(ChangeSection(SemaphoreSection.SectionType.green));
+        stateSettting = StartCoroutine(SetState(SemaphoreSection.SectionType.green));
     }
 
-    public IEnumerator ChangeSection(SemaphoreSection.SectionType targetSection, float delay = 0)
+    public void StopSetState()
+    {
+        StopCoroutine(stateSettting);
+    }
+
+    public IEnumerator SetState(SemaphoreSection.SectionType targetSection, float delay = 0)
     {
         yield return new WaitForSeconds(delay);
 
-        switch (targetSection)
+        while (state != targetSection)
         {
-            case SemaphoreSection.SectionType.red:
+            settingState = true;
+            switch (targetSection)
+            {
+                case SemaphoreSection.SectionType.red:
 
-                switch (currentSection)
-                {
-                    case SemaphoreSection.SectionType.red:
-                        Section.EnableLight();
-                            
-                        break;
+                    switch (state)
+                    {
+                        case SemaphoreSection.SectionType.red:
+                            Section.EnableLight();
+                            yield return null;
 
-                    case SemaphoreSection.SectionType.yellow:
-                        ChangeSingeSection(SemaphoreSection.SectionType.red);
-                        break;
+                            break;
 
-                    case SemaphoreSection.SectionType.green:
-                        Section.Blink(callback: () =>
-                        {
-                            ChangeSingeSection(SemaphoreSection.SectionType.yellow);
-                            StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
-                        });
+                        case SemaphoreSection.SectionType.yellow:
+                            SetSingleSectionState(SemaphoreSection.SectionType.red);
+                            yield return null;
 
-                        yield break;
-                }
+                            break;
 
-                break;
+                        case SemaphoreSection.SectionType.green:
+                            yield return StartCoroutine(Section._Blink(3, 0.5f));
+                            SetSingleSectionState(SemaphoreSection.SectionType.yellow);
+                            yield return StartCoroutine(SetState(targetSection, sectionChangeDelay));
 
-            case SemaphoreSection.SectionType.yellow:
-                switch (currentSection)
-                {
-                    case SemaphoreSection.SectionType.red:
-                        ChangeSingeSection(SemaphoreSection.SectionType.yellow);
-                        break;
+                            break;
+                    }
 
-                    case SemaphoreSection.SectionType.yellow:
-                        Section.EnableLight();
-                        break;
+                    break;
 
-                    case SemaphoreSection.SectionType.green:
-                        Section.Blink(callback: () =>
-                        {
-                            ChangeSingeSection(SemaphoreSection.SectionType.yellow);
-                            StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
-                        });
+                case SemaphoreSection.SectionType.yellow:
+                    switch (state)
+                    {
+                        case SemaphoreSection.SectionType.red:
+                            SetSingleSectionState(SemaphoreSection.SectionType.yellow);
+                            yield return null;
 
-                        yield break;
-                }
+                            break;
 
-                break;
+                        case SemaphoreSection.SectionType.yellow:
+                            Section.EnableLight();
+                            yield return null;
 
-            case SemaphoreSection.SectionType.green:
-                switch (currentSection)
-                {
-                    case SemaphoreSection.SectionType.red:
-                        ChangeSingeSection(SemaphoreSection.SectionType.yellow);
-                        StartCoroutine(ChangeSection(targetSection, sectionChangeDelay));
+                            break;
 
-                        yield break;
+                        case SemaphoreSection.SectionType.green:
+                            yield return StartCoroutine(Section._Blink(3, 0.5f));
+                            SetSingleSectionState(SemaphoreSection.SectionType.yellow);
+                            yield return StartCoroutine(SetState(targetSection, sectionChangeDelay));
 
-                    case SemaphoreSection.SectionType.yellow:
-                        ChangeSingeSection(SemaphoreSection.SectionType.green);
-                        
-                        break;
+                            break;
+                    }
 
-                    case SemaphoreSection.SectionType.green:
-                        Section.EnableLight();
+                    break;
 
-                        break;
-                }
+                case SemaphoreSection.SectionType.green:
+                    switch (state)
+                    {
+                        case SemaphoreSection.SectionType.red:
+                            SetSingleSectionState(SemaphoreSection.SectionType.yellow);
+                            yield return StartCoroutine(SetState(targetSection, sectionChangeDelay));
 
-                break;
+                            break;
+
+
+                        case SemaphoreSection.SectionType.yellow:
+                            SetSingleSectionState(SemaphoreSection.SectionType.green);
+                            yield return null;
+
+                            break;
+
+                        case SemaphoreSection.SectionType.green:
+                            Section.EnableLight();
+                            yield return null;
+
+                            break;
+                    }
+
+                    break;
+            }
         }
+
+        settingState = false;
+        sectionChangeFinished?.Invoke();
     }
 
-    void ChangeSingeSection(SemaphoreSection.SectionType targetSection)
+    void SetSingleSectionState(SemaphoreSection.SectionType targetSection)
     {
         Section.DisableLight();
         sections[(int)targetSection].EnableLight();
-        currentSection = targetSection;
+        state = targetSection;
     }
 }
