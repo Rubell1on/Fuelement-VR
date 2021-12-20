@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class SelectorControlsMenu : MonoBehaviour
 {
-    public SelectorController selector;
     public PagesController pages;
     public GameObject selectorCardTemplate;
     public Transform parent;
+    public LevelCardHovered levelCardHovered = new LevelCardHovered();
 
     List<GameObject> selectorCards = new List<GameObject>();
 
@@ -24,25 +24,37 @@ public class SelectorControlsMenu : MonoBehaviour
 
     void InitCards()
     {
-        selector.elements.ForEach(l =>
+        LevelsController levels = LevelsController.GetInstance();
+
+        if (levels == null)
         {
+            return;
+        }
+
+        for (int i = 0; i < levels.levels.Count; i++)
+        {
+            int id = i;
+            CustomLevel level = levels.levels[id];
+
             GameObject instance = Instantiate(selectorCardTemplate, parent);
             LevelCard card = instance.GetComponent<LevelCard>();
-            card.setCardData(l);
+            card.SetCardData(level);
+
             CustomButton cb = instance.GetComponent<CustomButton>();
-            
+
             cb.onPointerEnter.AddListener(() =>
             {
-                CustomLevel cl = GetLevel(instance);
-                selector.onSelectionChange.Invoke(cl);
+                levelCardHovered?.Invoke(level);
             });
+
             cb.onClick.AddListener(() =>
             {
-                selector.SetSelection(l);
+                levels.SelectLevelById(id);
                 pages.OpenPage(1);
             });
+
             selectorCards.Add(instance);
-        });
+        }
     }
 
     void RemoveAllCards()
@@ -56,14 +68,17 @@ public class SelectorControlsMenu : MonoBehaviour
         selectorCards = new List<GameObject>();
     }
 
-    int GetCardId(GameObject card)
-    {
-        return selectorCards.FindIndex(c => c.Equals(card));
-    }
+    //int GetCardId(GameObject card)
+    //{
+    //    return selectorCards.FindIndex(c => c.Equals(card));
+    //}
 
-    CustomLevel GetLevel(GameObject card)
-    {
-        int id = GetCardId(card);
-        return selector.elements[id];
-    }
+    //CustomLevel GetLevel(GameObject card)
+    //{
+    //    int id = GetCardId(card);
+    //    return selector.elements[id];
+    //}
+
+    [System.Serializable]
+    public class LevelCardHovered : UnityEvent<CustomLevel> { }
 }

@@ -336,6 +336,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16171716}
   m_CullTransparentMesh: 0
+--- !u!1 &19050270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 19050272}
+  - component: {fileID: 19050271}
+  m_Layer: 0
+  m_Name: Levels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &19050271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19050270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5b3760967568b459f188bf66265685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: b4a810fe4573e2c40b16c7b217389b40, type: 2}
+  selectionChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  currentId: 0
+--- !u!4 &19050272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19050270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49838246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,7 +1908,6 @@ MonoBehaviour:
   cars:
   - {fileID: 11400000, guid: 22cbb96e8aa14494c82835270aaa11ff, type: 2}
   - {fileID: 11400000, guid: 559b5b39a1fd7224b91635cc8f64a492, type: 2}
-  currentSelection: {fileID: 0}
   onSelectionChange:
     m_PersistentCalls:
       m_Calls: []
@@ -2501,11 +2549,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e56dd517f363134893a3b01f0b5b075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 1457047258}
   pages: {fileID: 1428913705}
   selectorCardTemplate: {fileID: 8918266003479318685, guid: 1c2e5f5d7dca9f441bb123b64b55a994,
     type: 3}
   parent: {fileID: 1914636740}
+  levelCardHovered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2069139732}
+        m_TargetAssemblyTypeName: LevelCard, Assembly-CSharp
+        m_MethodName: SetCardData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &217182518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9588,7 +9650,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e0046e0a68681428c3df6356bed01c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectorController: {fileID: 1457047258}
   ready: 0
   onChangeState:
     m_PersistentCalls:
@@ -9855,7 +9916,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1457047257}
-  - component: {fileID: 1457047258}
   m_Layer: 5
   m_Name: LevelSelector
   m_TagString: Untagged
@@ -9884,50 +9944,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1457047258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457047256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8c04ac4fefca644885690cf3646d897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardTemplate: {fileID: 1409676388256351549, guid: 873a0533588f7ec49b06d515e7ba9c2c,
-    type: 3}
-  elements:
-  - {fileID: 11400000, guid: b4a810fe4573e2c40b16c7b217389b40, type: 2}
-  currentSelection: {fileID: 0}
-  onSelectionChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1457047258}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: setCardData
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1428913706}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ChangeState
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!224 &1460953300 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1409676388256351546, guid: 873a0533588f7ec49b06d515e7ba9c2c,
@@ -12552,6 +12568,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062146193}
   m_CullTransparentMesh: 0
+--- !u!114 &2069139732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1409676388256351547, guid: 873a0533588f7ec49b06d515e7ba9c2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1409676386965317102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb8bb9c8da5f3f4190385e297bfe9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2072956765
 GameObject:
   m_ObjectHideFlags: 0
@@ -13306,7 +13334,7 @@ PrefabInstance:
     - target: {fileID: 1409676388256351549, guid: 873a0533588f7ec49b06d515e7ba9c2c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 873a0533588f7ec49b06d515e7ba9c2c, type: 3}

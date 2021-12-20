@@ -2,11 +2,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadingScreenController : MonoBehaviour
+public class LoadingScreenController : Singleton<LoadingScreenController>
 {
     public Text levelName;
     public Text progress;
     public Text pressAnyKey;
+
+    public void Awake()
+    {
+        SetDoNotDestroyOnLoad(false);
+        base.Awake();
+    }
 
     public void SetLevelName(string name)
     {

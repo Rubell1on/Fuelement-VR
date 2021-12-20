@@ -9,24 +9,24 @@ public class LevelCard : MonoBehaviour
     public Text title;
     public Text description;
 
-    public void setCardData(ASimpleData data)
+    public void SetCardData(ASimpleData data)
     {
-        if (background != null) background.texture = data.background;
-        if (title != null) title.text = data.title;
-        if (description != null) description.text = data.description;
+        SetBackground(data.background);
+        SetTitle(data.title);
+        SetDescription(data.description);
     }
 
-    public void setBackground(Texture texture)
+    public void SetBackground(Texture texture)
     {
         if (background != null) background.texture = texture;
     }
 
-    public void setTitle(string text)
+    public void SetTitle(string text)
     {
         if (title != null) title.text = text;
     }
 
-    public void setDescription(string text)
+    public void SetDescription(string text)
     {
         if (description != null) description.text = text;
     }

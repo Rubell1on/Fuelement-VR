@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class CarsController : Singleton<CarsController>
 {
     public List<CarData> cars;
-    public CarData currentSelection;
+    public CarData CurrentCar { get { return currentCar; } }
+    private CarData currentCar;
 
     public SelectorMenuEvent onSelectionChange;
 
@@ -14,14 +15,14 @@ public class CarsController : Singleton<CarsController>
     {
         if (newSelection != null)
         {
-            currentSelection = newSelection;
-            onSelectionChange.Invoke(currentSelection);
+            currentCar = newSelection;
+            onSelectionChange.Invoke(currentCar);
         }
     }
 
     public void DeselectCar()
     {
-        currentSelection = null;
+        currentCar = null;
         onSelectionChange.Invoke(null);
     }
 
