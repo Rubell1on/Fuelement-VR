@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ public class Window : MonoBehaviour
     //public UnityEvent windowWasHidden;
 
     [ContextMenu("Show")]
-    public void Show(bool instantly = false)
+    public void Show(bool instantly = false, Action callback = null)
     {
         if (canvasGroup.alpha == 1)
         {
@@ -44,11 +45,14 @@ public class Window : MonoBehaviour
         RectTransform rt = canvasGroup.GetComponent<RectTransform>();
         LeanTween.scale(rt, Vector3.one * 0.9f, 0);
         LeanTween.scale(rt, Vector3.one, animationDuration).setEase(scaling);
-        LeanTween.alphaCanvas(canvasGroup, 1, animationDuration).setEase(appearing);
-        //    .setOnComplete(() =>
-        //{
-        //    windowWasShown?.Invoke();
-        //});
+        LeanTween.alphaCanvas(canvasGroup, 1, animationDuration).setEase(appearing)
+            .setOnComplete(() =>
+            {
+                if (callback != null)
+                {
+                    callback();
+                }
+            });
     }
 
     [ContextMenu("Show instantly")]
@@ -64,7 +68,7 @@ public class Window : MonoBehaviour
     }
 
     [ContextMenu("Hide")]
-    public void Hide(bool instantly = false)
+    public void Hide(bool instantly = false, Action callback = null)
     {
         if (canvasGroup.alpha == 0)
         {
@@ -82,8 +86,11 @@ public class Window : MonoBehaviour
         LeanTween.scale(rt, Vector3.one * 0.9f, animationDuration).setEase(scaling);
         LeanTween.alphaCanvas(canvasGroup, 0, animationDuration).setEase(appearing).setOnComplete(() => 
         {
-            //windowWasHidden?.Invoke();
             gameObject.SetActive(false);
+            if (callback != null)
+            {
+                callback();
+            }
         });
     }
 

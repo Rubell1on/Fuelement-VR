@@ -14,72 +14,15 @@ public class LevelManager : Singleton<LevelManager>
         //StartCoroutine(Load(2));
     }
 
-    public IEnumerator Load(CustomLevel level, CarData car)
+    public Coroutine LoadMainMenu()
     {
-        int lsId = (int)DefaultScreens.LoadingScreen;
-        AsyncOperation loadingScreenOperation = SceneManager.LoadSceneAsync(lsId, LoadSceneMode.Additive);
+        return StartCoroutine(_LoadMainMenu());
+    }
 
-        while (!loadingScreenOperation.isDone)
-        {
-            yield return null;
-        }
-
-        yield return null;
-
-        LoadingScreenController lsc = LoadingScreenController.GetInstance();
-        lsc?.SetLevelName(level.name);
-
-        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(level.sceneBuiltInId, LoadSceneMode.Additive);
-        targetLevel.allowSceneActivation = false;
-
-        targetLevel.completed += o =>
-        {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene())
-                .completed += OnMainMenuUnloaded;
-        };
-
-        while (!targetLevel.isDone)
-        {
-            int percentage = Convert.ToInt32(targetLevel.progress * 100);
-            lsc?.SetLoadingProgress(percentage);
-
-            if (targetLevel.progress >= 0.9f)
-            {
-                lsc?.SetLoaded(true);
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    targetLevel.allowSceneActivation = true;
-                }
-            }
-            yield return null;
-        }
-
-        yield return null;
-
-        void OnMainMenuUnloaded(AsyncOperation asyncOperation)
-        {
-            Scene placeholder = SceneManager.GetAllScenes().ToList().Find(s => s.name.ToLower().Contains("placeholder"));
-
-            if (placeholder.name?.Length > 0)
-            {
-                SceneManager.UnloadSceneAsync(placeholder.buildIndex);
-            }
-
-            SceneManager.UnloadSceneAsync((int)DefaultScreens.LoadingScreen)
-                .completed += OnLoadingScreenUnloaded;
-        }
-
-        void OnLoadingScreenUnloaded(AsyncOperation obj)
-        {
-            LevelSettings levelSetup = LevelSettings.GetInstance();
-
-            if (levelSetup)
-            {
-                levelSetup.SetCar(car);
-                levelSetup.levelData = level;
-                levelSetup.SetTitle(level.title);
-            }
-        }
+    public IEnumerator _LoadMainMenu()
+    {
+        yield return StartCoroutine(LoadLevel((int)DefaultScreens.MainMenu));
+        yield return StartCoroutine(UnloadLevel(SceneManager.GetActiveScene()));
     }
 
     IEnumerator LoadLoadingScreen()
@@ -94,101 +37,113 @@ public class LevelManager : Singleton<LevelManager>
         yield return StartCoroutine(UnloadLevel(lsId));
     }
 
-    IEnumerator LoadLevel(int levelId, Action<AsyncOperation> asyncOperationCallback = null)
+    IEnumerator LoadGameLevel(CustomLevel level)
     {
-        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(levelId, LoadSceneMode.Additive);
+        yield return StartCoroutine(LoadLoadingScreen());
+
+        LoadingScreenController lsc = LoadingScreenController.GetInstance();
+        lsc?.SetLevelName(level.name);
+
+        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(level.sceneBuiltInId, LoadSceneMode.Additive);
+
+        while (!targetLevel.isDone)
+        {
+            targetLevel.allowSceneActivation = false;
+            int percentage = Convert.ToInt32(targetLevel.progress * 100);
+            lsc?.SetLoadingProgress(percentage);
+
+            if (targetLevel.progress >= 0.9f)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+
+        lsc?.SetLoaded(true);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        targetLevel.allowSceneActivation = true;
+    }
+
+    public IEnumerator LoadLevel(int levelId, LoadSceneMode loadSceneMode = LoadSceneMode.Additive, Action<AsyncOperation> whileLoopCallback = null)
+    {
+        AsyncOperation targetLevel = SceneManager.LoadSceneAsync(levelId, loadSceneMode);
 
         while(!targetLevel.isDone)
         {
-            if (asyncOperationCallback != null)
+            if (whileLoopCallback != null)
             {
-                asyncOperationCallback(targetLevel);
+                whileLoopCallback(targetLevel);
             }
             
             yield return null;
         }
     }
 
-    IEnumerator UnloadLevel(Scene scene, Action<AsyncOperation> asyncOperationCallback = null)
+    public IEnumerator UnloadLevel(Scene scene, Action<AsyncOperation> whileLoopCallback = null)
     {
         AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(scene);
 
         while(!asyncOperation.isDone)
         {
-            if (asyncOperationCallback != null)
+            if (whileLoopCallback != null)
             {
-                asyncOperationCallback(asyncOperation);
+                whileLoopCallback(asyncOperation);
             }
 
             yield return null;
         }
     }
 
-    IEnumerator UnloadLevel(int id, Action<AsyncOperation> asyncOperationCallback = null)
+    public IEnumerator UnloadLevel(int id, Action<AsyncOperation> whileLoopCallback = null)
     {
         AsyncOperation asyncOperation = SceneManager.UnloadSceneAsync(id);
 
         while (!asyncOperation.isDone)
         {
-            if (asyncOperationCallback != null)
+            if (whileLoopCallback != null)
             {
-                asyncOperationCallback(asyncOperation);
+                whileLoopCallback(asyncOperation);
             }
 
             yield return null;
         }
     }
 
-    //public IEnumerator Load(CustomLevel level, CarData car)
-    //{
-    //    yield return StartCoroutine(LoadLoadingScreen());
-    //    yield return new WaitForEndOfFrame();
+    public Coroutine Load(CustomLevel level, CarData car)
+    {
+        return StartCoroutine(_Load(level, car));
+    }
 
-    //    LoadingScreenController lsc = LoadingScreenController.GetInstance();
-    //    lsc?.SetLevelName(level.name);
+    IEnumerator _Load(CustomLevel level, CarData car)
+    {
+        yield return StartCoroutine(LoadGameLevel(level));
 
-    //    yield return new WaitForEndOfFrame();
+        Scene activeScene = SceneManager.GetActiveScene();
 
-    //    yield return StartCoroutine(LoadLevel(level.sceneBuiltInId, targetLevel =>
-    //    {
-    //        targetLevel.allowSceneActivation = false;
-    //        int percentage = Convert.ToInt32(targetLevel.progress * 100);
-    //        lsc?.SetLoadingProgress(percentage);
+        yield return StartCoroutine(UnloadLevel(activeScene));
+        yield return StartCoroutine(UnloadAllPlaceholders());
+        yield return StartCoroutine(UnloadLoadingScreen());
 
-    //        if (targetLevel.progress >= 0.9f)
-    //        {
-    //            lsc?.SetLoaded(true);
-    //            if (Input.GetKeyDown(KeyCode.Space))
-    //            {
-    //                targetLevel.allowSceneActivation = true;
-    //            }
-    //        }
-    //    }));
+        LevelSettings levelSetup = LevelSettings.GetInstance();
 
-    //    yield return new WaitForEndOfFrame();
+        if (levelSetup)
+        {
+            levelSetup.SetCar(car);
+            levelSetup.levelData = level;
+            levelSetup.SetTitle(level.title);
+        }
+    }
 
-    //    yield return StartCoroutine(UnloadLevel(SceneManager.GetActiveScene()));
+    IEnumerator UnloadAllPlaceholders()
+    {
+        Scene[] placeholders = SceneManager.GetAllScenes().ToList().Where(s => s.name.ToLower().Contains("placeholder")).ToArray();
 
-    //    yield return new WaitForEndOfFrame();
-
-    //    Scene placeholder = SceneManager.GetAllScenes().ToList().Find(s => s.name.ToLower().Contains("placeholder"));
-
-    //    if (placeholder.name?.Length > 0)
-    //    {
-    //        yield return StartCoroutine(UnloadLevel(placeholder.buildIndex));
-    //    }
-
-    //    yield return StartCoroutine(UnloadLoadingScreen());
-
-    //    LevelSettings levelSetup = LevelSettings.GetInstance();
-
-    //    if (levelSetup)
-    //    {
-    //        levelSetup.SetCar(car);
-    //        levelSetup.levelData = level;
-    //        levelSetup.SetTitle(level.title);
-    //    }
-    //}
+        foreach (Scene s in placeholders)
+        {
+            yield return StartCoroutine(UnloadLevel(s.buildIndex));
+        }
+    }
 
     public static IEnumerator Load(int id)
     {

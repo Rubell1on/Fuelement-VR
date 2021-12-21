@@ -9,20 +9,15 @@ public class BackgroundLoader : MonoBehaviour
     public int backgroundId = 2;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        LoadBackground();
+        yield return StartCoroutine(LoadBackground());
     }
 
-    void LoadBackground()
+    IEnumerator LoadBackground()
     {
-        SceneManager.sceneLoaded += OnBackgroundLoaded;
-        SceneManager.LoadScene(backgroundId, LoadSceneMode.Additive);
-    }
+        yield return LevelManager.GetInstance()?.LoadLevel(backgroundId);
 
-    private void OnBackgroundLoaded(Scene background, LoadSceneMode arg1)
-    {
-        SceneManager.sceneLoaded -= OnBackgroundLoaded;
         List<Camera> cameras = GameObject.FindObjectsOfType<Camera>().ToList();
         Camera camera = cameras.Find((c) => c.name == "Background Camera");
 
@@ -31,4 +26,16 @@ public class BackgroundLoader : MonoBehaviour
             camera.gameObject.SetActive(false);
         }
     }
+
+    //private void OnBackgroundLoaded(Scene background, LoadSceneMode arg1)
+    //{
+    //    SceneManager.sceneLoaded -= OnBackgroundLoaded;
+    //    List<Camera> cameras = GameObject.FindObjectsOfType<Camera>().ToList();
+    //    Camera camera = cameras.Find((c) => c.name == "Background Camera");
+
+    //    if (camera.gameObject.activeSelf)
+    //    {
+    //        camera.gameObject.SetActive(false);
+    //    }
+    //}
 }

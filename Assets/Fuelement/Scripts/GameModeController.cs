@@ -28,7 +28,7 @@ public class GameModeController : MonoBehaviour
             CustomLevel level = LevelsController.GetInstance()?.CurrentLevel;
             CarData car = CarsController.GetInstance()?.CurrentCar;
 
-            StartCoroutine(LevelManager.GetInstance()?.Load(level, car));
+            LevelManager.GetInstance()?.Load(level, car);
         } else
         {
             throw new NullReferenceException("Level or Car data is not set!");
