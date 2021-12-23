@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    public enum DefaultScreens { MainMenu, LoadingScreen };
+    public enum DefaultScreens { Auhrorization, MainMenu, LoadingScreen };
 
     void Start()
     {

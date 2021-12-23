@@ -12,6 +12,8 @@ public class CustomButtonEditor : UnityEditor.UI.ButtonEditor
         CustomButton component = (CustomButton)target;
 
         base.OnInspectorGUI();
+        SerializedProperty form = serializedObject.FindProperty("form");
+        EditorGUILayout.PropertyField(form);
         SerializedProperty source = serializedObject.FindProperty("source");
         EditorGUILayout.PropertyField(source);
         SerializedProperty pointerEnter = serializedObject.FindProperty("pointerEnter");

@@ -14,12 +14,23 @@ public class AchievementsController : Singleton<AchievementsController>
     private AudioSource audioSource;
     [SerializeField]
     private List<Achievement> achievements = new List<Achievement>();
+    public AchievementsControllerEvent achievementReceived = new AchievementsControllerEvent();
 
-    public void Receive(Achievement achievement)
+    public async void Receive(Achievement achievement)
     {
-        AchievementUI achievementUI = CreateAchievementUI(achievement);
-        achievementUI.ShowAndHide(() => DesroyAchievementUI(achievementUI));
-        audioSource.Play();
+        if (achievement.received) return;
+        if (await DBUserAchievements.AchievementReceived(2, achievement.id)) return;
+
+        bool result = await DBUserAchievements.Receive(2, achievement.id);
+
+        if (result)
+        {
+            achievement.received = true;
+
+            AchievementUI achievementUI = CreateAchievementUI(achievement);
+            achievementUI.ShowAndHide(() => DesroyAchievementUI(achievementUI));
+            audioSource.Play();
+        }
     }
 
     AchievementUI CreateAchievementUI(Achievement achievement)
@@ -35,4 +46,7 @@ public class AchievementsController : Singleton<AchievementsController>
     {
         Destroy(achievementUI.gameObject);
     }
+
+    [System.Serializable]
+    public class AchievementsControllerEvent : UnityEvent<Achievement> { }
 }

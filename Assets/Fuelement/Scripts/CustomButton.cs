@@ -23,10 +23,18 @@ public class CustomButton : Button, IPointerEnterHandler, IPointerExitHandler, I
     [Header("Events")]
     public UnityEvent onPointerEnter;
     public UnityEvent onPointerExit;
+    public CustomForm form;
+
+    public override void OnSubmit(BaseEventData eventData)
+    {
+        base.OnSubmit(eventData);
+        FormCheck(form);
+    }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
+        FormCheck(form);
         if (source != null && pointerClick != null)
         {
             source.clip = pointerClick;
@@ -56,5 +64,13 @@ public class CustomButton : Button, IPointerEnterHandler, IPointerExitHandler, I
         }
 
         onPointerExit.Invoke();
+    }
+
+    private void FormCheck(CustomForm form)
+    {
+        if (form != null)
+        {
+            form.Validate.Invoke();
+        }
     }
 }

@@ -7,18 +7,4 @@ public class Achievement : ScriptableObject
     public string title;
     public string description;
     public bool received = false;
-
-    [ContextMenu("Receive")]
-    public void Receive()
-    {
-        if (received) return;
-
-        AchievementsController achievementController = AchievementsController.GetInstance();
-
-        if (achievementController == null) return;
-
-        achievementController.Receive(this);
-        received = true;
-    }
-
 }
