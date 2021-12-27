@@ -9,4 +9,5 @@ public static class DBTableNames
     public static readonly string parts = "parts";
     public static readonly string tissues = "tissues";
     public static readonly string userAchievements = "userachievements";
+    public static readonly string achievements = "achievements";
 }

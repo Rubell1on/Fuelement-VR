@@ -8,14 +8,14 @@ using UnityEngine;
 
 public class DBUserAchievements
 {
-    public static async Task<bool> Receive(int userId, int achievementId)
+    public static async Task<bool> Receive(int userId, int achievementId, DateTime receiveDate)
     {
         MySqlConnection connection = null;
 
         try
         {
             connection = await SQLConnection.GetConnection();
-            string sql = $"INSERT INTO {DBTableNames.userAchievements} SET userId = \"{userId}\", achievementId = \"{achievementId}\", received = \"1\";";
+            string sql = $"INSERT INTO {DBTableNames.userAchievements} SET userId = \"{userId}\", achievementId = \"{achievementId}\", received = \"1\", receiveDate = \"{receiveDate.ToString("yyyy-MM-dd")}\";";
 
             MySqlCommand command = new MySqlCommand(sql, connection);
 
@@ -69,6 +69,53 @@ public class DBUserAchievements
             connection.Close();
 
             return false;
+        }
+    }
+
+    public static async Task<List<Achievement>> GetUserAchievements(int userId)
+    {
+        MySqlConnection connection = null;
+        List<Achievement> achievements = new List<Achievement>();
+
+        try
+        {
+            connection = await SQLConnection.GetConnection();
+            string sql = $"SELECT {DBTableNames.userAchievements}.id, {DBTableNames.userAchievements}.achievementId, {DBTableNames.achievements}.title, {DBTableNames.achievements}.description, {DBTableNames.userAchievements}.received, {DBTableNames.userAchievements}.receiveDate FROM {DBTableNames.userAchievements} LEFT JOIN {DBTableNames.achievements} ON achievementId = {DBTableNames.achievements}.id WHERE userId = \"{userId}\";";
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            await Task.Run(() =>
+            {
+                MySqlDataReader reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    Achievement achievement = new Achievement();
+                    int id = 0;
+                    Int32.TryParse(reader[1].ToString(), out id);
+
+                    achievement.id = id;
+                    achievement.title = reader[2].ToString();
+                    achievement.description = reader[3].ToString();
+                    achievement.received = reader[4]?.ToString() == "1" ? true : false;
+                    achievement.receiveDate = DateTime.Parse(reader[5].ToString());
+
+                    achievements.Add(achievement);
+                }
+
+                reader.Close();
+                connection.Close();
+
+                return achievements;
+            });
+
+            return achievements;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Ошибка: " + e);
+            connection.Close();
+
+            return achievements;
         }
     }
 

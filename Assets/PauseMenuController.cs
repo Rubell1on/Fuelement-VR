@@ -12,12 +12,14 @@ public class PauseMenuController : MonoBehaviour
     public CustomButton backToMainMenu;
     public Window window;
 
+    [SerializeField]
     private Canvas canvas;
+    [SerializeField]
     private bool executing = false;
 
     void Start()
     {
-        canvas = GetComponent<Canvas>();
+        if (canvas == null) canvas = GetComponent<Canvas>();
         @continue.onClick.AddListener(Hide);
         backToMainMenu.onClick.AddListener(BackToMainMenu);
     }

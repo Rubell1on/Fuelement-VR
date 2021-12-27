@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,20 +13,21 @@ public class AchievementsController : Singleton<AchievementsController>
     private RectTransform body;
     [SerializeField]
     private AudioSource audioSource;
-    [SerializeField]
-    private List<Achievement> achievements = new List<Achievement>();
+    public List<AchievementObject> achievements = new List<AchievementObject>();
     public AchievementsControllerEvent achievementReceived = new AchievementsControllerEvent();
 
-    public async void Receive(Achievement achievement)
+    public async void Receive(AchievementObject achievement)
     {
         if (achievement.received) return;
         if (await DBUserAchievements.AchievementReceived(2, achievement.id)) return;
 
-        bool result = await DBUserAchievements.Receive(2, achievement.id);
+        DateTime receiveDate = DateTime.Now;
+        bool result = await DBUserAchievements.Receive(2, achievement.id, receiveDate);
 
         if (result)
         {
             achievement.received = true;
+            achievement.receiveDate = receiveDate;
 
             AchievementUI achievementUI = CreateAchievementUI(achievement);
             achievementUI.ShowAndHide(() => DesroyAchievementUI(achievementUI));
@@ -33,7 +35,15 @@ public class AchievementsController : Singleton<AchievementsController>
         }
     }
 
-    AchievementUI CreateAchievementUI(Achievement achievement)
+    public void ReceiveDemo(AchievementObject achievement)
+    {
+        AchievementUI achievementUI = CreateAchievementUI(achievement);
+        achievementUI.ShowAndHide(() => DesroyAchievementUI(achievementUI));
+        audioSource.Play();
+
+    }
+
+    public AchievementUI CreateAchievementUI(AchievementObject achievement)
     {
         AchievementUI achievementUI = Instantiate(template, body.transform);
         achievementUI.Title = achievement.title;
@@ -42,11 +52,11 @@ public class AchievementsController : Singleton<AchievementsController>
         return achievementUI;
     }
 
-    void DesroyAchievementUI(AchievementUI achievementUI)
+    public void DesroyAchievementUI(AchievementUI achievementUI)
     {
         Destroy(achievementUI.gameObject);
     }
 
     [System.Serializable]
-    public class AchievementsControllerEvent : UnityEvent<Achievement> { }
+    public class AchievementsControllerEvent : UnityEvent<AchievementObject> { }
 }

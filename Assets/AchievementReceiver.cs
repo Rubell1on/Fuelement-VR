@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AchievementReceiver : MonoBehaviour
 {
-    public Achievement achievement;
+    public AchievementObject achievement;
 
     [ContextMenu("Receive")]
     public void Receive()
@@ -13,5 +13,13 @@ public class AchievementReceiver : MonoBehaviour
         if (achievement == null || achievementsController == null) return;
 
         achievementsController.Receive(achievement);
+    }
+
+    public void ReceiveDemo()
+    {
+        AchievementsController achievementsController = AchievementsController.GetInstance();
+        if (achievement == null || achievementsController == null) return;
+
+        achievementsController.ReceiveDemo(achievement);
     }
 }
